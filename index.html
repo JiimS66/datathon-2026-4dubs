@@ -1,86 +1,28 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air for All Good</title>
+    <title>Air for All Good - Data Dashboard</title>
     <style>
         /* 页面基础样式 */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; margin: 0; background-color: #f8f9fa; color: #333; }
+        
+        /* 顶部 Banner 样式 */
+        .main-banner { background-color: #212529; color: #fff; padding: 60px 0; width: 100%; margin-bottom: 40px; }
+        .banner-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .main-banner h1 { margin: 0; font-size: 3.5em; font-weight: 700; letter-spacing: -1px; }
+        .banner-logo { height: 70px; width: auto; background-color: white; padding: 10px; border-radius: 5px; }
 
-        /* === Banner 区域样式 === */
-        .main-banner {
-            background-color: #212529; /* 深色背景 */
-            color: #ffffff; 
-            padding: 60px 0; /*稍微减小一点高度，让Logo更好看*/
-            width: 100%; 
-            margin-bottom: 40px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        /* Banner 内部容器 - Flexbox 布局 */
-        .banner-content {
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 0 20px;
-            display: flex;              /* 开启 Flexbox */
-            justify-content: space-between; /* 一左一右 */
-            align-items: center;        /* 垂直居中 */
-        }
-
-        /* 标题样式 */
-        .main-banner h1 {
-            margin: 0;
-            font-size: 3.5em; 
-            font-weight: 700; 
-            letter-spacing: -1px;
-        }
-
-        /* Logo 图片样式 */
-        .banner-logo {
-            height: 70px; /* 控制 Logo 大小 */
-            width: auto; 
-            background-color: white; /* 给透明或黑色字的Logo加个白底 */
-            padding: 10px; 
-            border-radius: 5px; /* 圆角 */
-        }
-
-        /* 内容容器 */
-        .container {
-            max-width: 1200px; 
-            margin: 0 auto 40px auto;
-            padding: 30px; 
-            background-color: #ffffff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
-        }
-
-        .description {
-            text-align: left; 
-            color: #555;
-            margin-bottom: 30px;
-            line-height: 1.8;
-            width: 100%;
-            font-size: 1.1em;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            font-size: 0.8em;
-            color: #999;
-            width: 100%;
-        }
+        /* 主内容容器样式 */
+        .container { max-width: 1200px; margin: 0 auto 40px auto; padding: 30px; background-color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-radius: 8px; display: flex; flex-direction: column; align-items: center; }
+        
+        /* 副标题与描述样式 */
+        h2 { color: #555; font-weight: 400; margin-top: 0; line-height: 1.4; text-align: center; }
+        .description { text-align: justify; color: #555; margin-bottom: 30px; line-height: 1.6; width: 100%; font-size: 1.05em; }
+        
+        /* 页脚样式 */
+        footer { text-align: center; margin-top: 40px; margin-bottom: 20px; font-size: 0.8em; color: #999; width: 100%; }
     </style>
 </head>
 <body>
@@ -91,18 +33,25 @@
             <img src="DubsTech.png" alt="DubsTech Logo" class="banner-logo">
         </div>
     </header>
+
     <div class="container">
-        
+        <div style="text-align: center; margin-bottom: 30px; width: 100%;">
+            <h2>2025 In-Depth Insights into Air Quality and Livability Across the United States</h2>
+            <hr style="width: 60px; border: 1px solid #212529; margin: 20px auto;">
+        </div>
+
         <p class="description">
-            这是一个基于 Tableau Public 的可视化仪表板。<br>
-            （你可以在代码里修改这段文字，介绍你的数据分析背景。）
+            This project aims to reveal the true picture of air quality across the United States through data visualization and analysis. 
+            We begin with a <strong>geographical overview</strong> of the entire country, capturing the current air quality status of each state and county. 
+            We then delve deeper, analyzing regional differences and the causes of <strong>core pollutants</strong> such as PM2.5 and ozone. 
+            Finally, we construct a <strong>livability risk assessment model</strong> to intuitively identify high-risk areas and areas with a high quality of life. 
+            <br><br>
+            Let's use data to collectively focus on respiratory health and the future of our environment.
         </p>
 
         <div class='tableauPlaceholder' id='viz1770495148449' style='position: relative'>
             <noscript>
-                <a href='#'>
-                    <img alt='仪表板 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PW&#47;PW4HRR7XF&#47;1_rss.png' style='border: none' />
-                </a>
+                <a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PW&#47;PW4HRR7XF&#47;1_rss.png' style='border: none' /></a>
             </noscript>
             <object class='tableauViz' style='display:none;'>
                 <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
@@ -115,7 +64,7 @@
                 <param name='display_spinner' value='yes' />
                 <param name='display_overlay' value='yes' />
                 <param name='display_count' value='yes' />
-                <param name='language' value='zh-CN' />
+                <param name='language' value='en-US' />
             </object>
         </div>
         
@@ -123,24 +72,21 @@
             var divElement = document.getElementById('viz1770495148449');
             var vizElement = divElement.getElementsByTagName('object')[0];
             if ( divElement.offsetWidth > 800 ) { 
-                vizElement.style.width='1000px';
-                vizElement.style.height='827px';
+                vizElement.style.width='1000px'; vizElement.style.height='827px';
             } else if ( divElement.offsetWidth > 500 ) { 
-                vizElement.style.width='1000px';
-                vizElement.style.height='827px';
+                vizElement.style.width='1000px'; vizElement.style.height='827px';
             } else { 
-                vizElement.style.width='100%';
-                vizElement.style.height='1077px';
+                vizElement.style.width='100%'; vizElement.style.height='1077px';
             } 
             var scriptElement = document.createElement('script');
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
             vizElement.parentNode.insertBefore(scriptElement, vizElement);
         </script>
-        </div>
-    
-    <footer>
-        &copy; 2026 Powered by GitHub Pages & Tableau
-    </footer>
+
+        <footer>
+            &copy; 2026 Powered by GitHub Pages & Tableau
+        </footer>
+    </div>
 
 </body>
 </html>
