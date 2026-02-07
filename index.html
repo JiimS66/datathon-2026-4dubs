@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的 Tableau 数据仪表板</title>
+    <style>
+        /* 页面基础样式 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* 浅灰色背景，保护视力 */
+            color: #333;
+        }
+
+        /* 内容容器，限制最大宽度并居中 */
+        .container {
+            max-width: 1000px; /* 如果觉得图表太宽或太窄，可以修改这个数值 */
+            margin: 40px auto; /* 上下保持间距，左右自动居中 */
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* 给盒子加一点阴影，更有质感 */
+            border-radius: 8px;
+        }
+
+        /* 标题样式 */
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        /* 描述文字样式 */
+        .description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* 底部页脚 */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.8em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Tableau 数据分析项目展示</h1>
+        
+        <p class="description">
+            这是一个基于 Tableau Public 的可视化仪表板。<br>
+            你可以在这里简单介绍一下这个数据的来源、分析的目的以及你的发现。
+        </p>
+
+        <div class='tableauPlaceholder' id='viz1770494563555' style='position: relative'>
+            <noscript>
+                <a href='#'>
+                    <img alt='工作表 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;re&#47;report_17704941370910&#47;1&#47;1_rss.png' style='border: none' />
+                </a>
+            </noscript>
+            <object class='tableauViz' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                <param name='embed_code_version' value='3' /> 
+                <param name='site_root' value='' />
+                <param name='name' value='report_17704941370910&#47;1' />
+                <param name='tabs' value='no' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;re&#47;report_17704941370910&#47;1&#47;1.png' /> 
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='language' value='zh-CN' />
+            </object>
+        </div>
+        
+        <script type='text/javascript'>
+            var divElement = document.getElementById('viz1770494563555');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            // 下面这行代码会自动根据网页宽度调整图表高度，保持 4:3 的比例（0.75）
+            vizElement.style.width='100%';
+            vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        </script>
+        <footer>
+            &copy; 2026 Powered by GitHub Pages & Tableau
+        </footer>
+    </div>
+
+</body>
+</html>
