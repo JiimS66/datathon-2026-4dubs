@@ -5,27 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Air for All Good - Data Dashboard</title>
     <style>
-        /* --- 全局样式：更轻盈的字体和背景 --- */
+        /* --- 全局重置与基础样式 --- */
         body {
             margin: 0;
             padding: 0;
-            font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif; /* 优先使用更现代的无衬线字体 */
-            background-color: #FAFAFA; /* 背景改为极淡的米白色，比灰色更清爽 */
-            color: #424242; /* 文字颜色改用深灰，不要用纯黑，减少视觉沉重感 */
+            /* 字体改为更现代无衬线字体 */
+            font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+            /* 背景色：极淡的米白，比纯白更护眼 */
+            background-color: #FAFAFA;
+            /* 文字颜色：深灰，比纯黑更柔和 */
+            color: #37474F;
         }
 
         /* --- 1. 顶部导航栏：清新森林绿渐变 --- */
         .site-header {
-            /* 使用渐变色，从深绿到稍亮的绿，增加通透感 */
-            background: linear-gradient(135deg, #2E7D32 0%, #43A047 100%);
+            /* 核心修改：从黑色改为绿色渐变 */
+            background: linear-gradient(135deg, #2E7D32 0%, #66BB6A 100%);
             color: #ffffff;
             padding: 20px 0;
             width: 100%;
-            box-shadow: 0 2px 10px rgba(46, 125, 50, 0.2); /* 淡淡的绿色阴影 */
+            /* 添加一点绿色阴影 */
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
         }
 
         .header-content {
-            max-width: 1100px; 
+            /* 保持对齐宽度 1100px */
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 30px;
             display: flex;
@@ -35,10 +40,11 @@
 
         .site-title {
             margin: 0;
-            font-size: 3.5em; 
+            font-size: 3.5em;
             font-weight: 700;
             white-space: nowrap;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* 轻微文字阴影增加层次 */
+            /* 文字加一点阴影，增加立体感 */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
 
         /* Logo 容器 */
@@ -48,21 +54,23 @@
         }
 
         .header-logo-container img {
-            height: 70px; 
+            height: 70px;
             width: auto;
-            background-color: rgba(255, 255, 255, 0.95); /* 微微透明的白色背景 */
-            padding: 8px 15px; 
-            border-radius: 8px; /* 圆角更大一点，更柔和 */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            /* Logo 背景：半透明白色，圆角，让它在绿底上既清晰又不突兀 */
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
 
         /* --- 2. 描述 Banner：极淡薄荷绿 --- */
         .description-banner {
-            background-color: #F1F8E9; /* 极淡的薄荷绿背景 */
+            /* 核心修改：从灰色改为极淡的薄荷绿 */
+            background-color: #F1F8E9;
             padding: 50px 0;
             width: 100%;
-            /* 底部边框改为柔和的浅绿色 */
-            border-bottom: 1px solid #C8E6C9; 
+            /* 底部边框改为浅绿色 */
+            border-bottom: 1px solid #C8E6C9;
             margin-bottom: 40px;
         }
 
@@ -75,26 +83,28 @@
 
         .banner-inner h2 {
             margin: 0 0 25px 0;
-            color: #1B5E20; /* 标题使用深绿色，呼应环保主题 */
-            font-weight: 400;
+            /* 标题颜色：深森林绿 */
+            color: #1B5E20;
+            font-weight: 500;
             font-size: 1.8em;
             line-height: 1.4;
         }
 
-        /* 分割线：改为绿色 */
+        /* 分割线：改为鲜亮的草绿色 */
         .banner-divider {
             width: 80px;
             border: none;
-            border-top: 3px solid #81C784; /* 浅绿色粗线条 */
+            border-top: 3px solid #66BB6A;
             margin: 0 auto 25px auto;
             border-radius: 2px;
         }
 
         .banner-inner p {
-            color: #546E7A; /* 蓝灰色文字，比纯黑更现代 */
-            line-height: 1.7; /* 增加行高，阅读更轻松 */
+            /* 描述文字颜色：灰绿色调 */
+            color: #455A64;
+            line-height: 1.8;
             font-size: 1.1em;
-            text-align: justify; 
+            text-align: justify;
         }
 
         /* --- 3. 主体内容区域 --- */
@@ -103,27 +113,29 @@
             margin: 0 auto 60px auto;
             padding: 40px 30px;
             background-color: #ffffff;
-            /* 阴影改为更柔和的大范围扩散 */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
-            border-radius: 12px; /* 圆角增加 */
-            border: 1px solid #E8F5E9; /* 极细的绿色边框 */
+            /* 阴影更柔和 */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-radius: 16px; /* 圆角更大 */
+            border: 1px solid #E8F5E9; /* 极细的微绿边框 */
         }
 
+        /* 图表之间的分割线 */
         .chart-separator {
             border: 0;
             height: 1px;
-            /* 渐变分割线 */
-            background-image: linear-gradient(to right, rgba(255,255,255,0), #A5D6A7, rgba(255,255,255,0));
+            /* 渐变分割线：透明 -> 绿 -> 透明 */
+            background-image: linear-gradient(to right, rgba(255,255,255,0), #81C784, rgba(255,255,255,0));
             margin: 60px 0;
         }
 
         footer {
             text-align: center;
             padding: 30px;
-            color: #90A4AE; /* 浅灰蓝色 */
+            color: #90A4AE;
             font-size: 0.9em;
         }
 
+        /* 移动端适配 */
         @media (max-width: 768px) {
             .header-content { flex-direction: column; gap: 15px; }
             .header-logo-container img { height: 60px; }
