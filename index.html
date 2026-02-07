@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air for All Good - 数据仪表板</title>
+    <title>Air for All Good</title>
     <style>
         /* 页面基础样式 */
         body {
@@ -14,40 +14,48 @@
             color: #333;
         }
 
-        /* === 新增 Banner 区域样式 (仿照示例网站) === */
+        /* === Banner 区域样式 === */
         .main-banner {
-            background-color: #212529; /* 深色背景，例如 #212529 或 #000 */
-            color: #ffffff; /* 白色文字 */
-            padding: 80px 0; /* 上下增加高度，显得更有气势 */
-            width: 100%; /* 全宽 */
-            margin-bottom: 40px; /* 和下方白色内容块保持距离 */
+            background-color: #212529; /* 深色背景 */
+            color: #ffffff; 
+            padding: 60px 0; /*稍微减小一点高度，让Logo更好看*/
+            width: 100%; 
+            margin-bottom: 40px; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* Banner 内部的内容容器，用于对齐 */
+        /* Banner 内部容器 - Flexbox 布局 */
         .banner-content {
-            max-width: 1200px; /* 和下方主容器保持对齐宽度 */
-            margin: 0 auto; /* 居中 */
-            padding: 0 20px; /* 左右留边距，防止在小屏贴边 */
-            text-align: left; /* 标题靠左对齐 */
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px;
+            display: flex;              /* 开启 Flexbox */
+            justify-content: space-between; /* 一左一右 */
+            align-items: center;        /* 垂直居中 */
         }
 
-        /* Banner 里的主标题样式 */
+        /* 标题样式 */
         .main-banner h1 {
             margin: 0;
-            font-size: 3.5em; /* 超大字体 */
-            font-weight: 700; /* 加粗 */
-            letter-spacing: -1px; /* 字间距稍微紧凑点 */
+            font-size: 3.5em; 
+            font-weight: 700; 
+            letter-spacing: -1px;
         }
-        /* ========================================== */
 
+        /* Logo 图片样式 */
+        .banner-logo {
+            height: 70px; /* 控制 Logo 大小 */
+            width: auto; 
+            background-color: white; /* 给透明或黑色字的Logo加个白底 */
+            padding: 10px; 
+            border-radius: 5px; /* 圆角 */
+        }
 
         /* 内容容器 */
         .container {
             max-width: 1200px; 
-            /* 修改了 margin-top 为 0 */
             margin: 0 auto 40px auto;
-            padding: 30px; /* 增加内部内边距 */
+            padding: 30px; 
             background-color: #ffffff;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             border-radius: 8px;
@@ -56,16 +64,13 @@
             align-items: center; 
         }
 
-        /* 原来的 h1 样式已删除 */
-
         .description {
-            text-align: left; /* 描述文字也改为靠左，更像文章 */
+            text-align: left; 
             color: #555;
             margin-bottom: 30px;
             line-height: 1.8;
             width: 100%;
             font-size: 1.1em;
-            /* max-width: 800px;  如果希望文字窄一点可以取消注释这一行 */
         }
 
         footer {
@@ -83,6 +88,7 @@
     <header class="main-banner">
         <div class="banner-content">
             <h1>Air for All Good</h1>
+            <img src="DubsTech.png" alt="DubsTech Logo" class="banner-logo">
         </div>
     </header>
     <div class="container">
