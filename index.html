@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f4f4f4; /* 整体背景偏灰白 */
+            background-color: #f4f4f4;
             color: #333;
         }
 
@@ -18,39 +18,38 @@
         .site-header {
             background-color: #1a1a1a; /* 深黑色背景 */
             color: #ffffff;
-            padding: 25px 0; /* 上下内边距 */
+            padding: 20px 0; /* 上下内边距 */
             width: 100%;
         }
 
-        /* 标题栏内容容器 (用于 Flex 布局对齐) */
         .header-content {
-            max-width: 1280px; /* 限制最大宽度，保持内容居中 */
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 30px; /* 左右留白 */
+            padding: 0 30px;
             display: flex;
-            justify-content: space-between; /* 标题在左，Logo 在右 */
-            align-items: center; /* 垂直居中 */
+            justify-content: space-between; /* 左标题，右Logo */
+            align-items: center;
         }
 
         .site-title {
             margin: 0;
-            font-size: 3.8em; /* 大号标题字 */
+            font-size: 3.5em; 
             font-weight: 700;
+            white-space: nowrap; /* 防止标题换行 */
         }
 
-        /* 右侧 Logo 区域 */
-        .header-logos {
+        /* 右侧 Logo 容器 */
+        .header-logo-container {
             display: flex;
             align-items: center;
-            gap: 20px; /* Logo 之间的间距 */
         }
 
-        /* Logo 图片样式 (你需要替换实际图片) */
-        .header-logos img {
-            height: 50px; /* 限制 Logo 高度，宽度自适应 */
-            width: auto;
-            /* 如果你的 Logo 是深色的，可能需要加个白色背景或滤镜，例如：
-            background-color: white; padding: 5px; border-radius: 4px; */
+        /* Logo 图片样式 */
+        .header-logo-container img {
+            height: 80px; /* 稍微调大一点高度，让 Logo 文字更清晰 */
+            width: auto;  /* 保持比例 */
+            /* 如果图片自带深色文字，看不清的话，可以打开下面这行加个白底圆角： */
+             background-color: white; padding: 5px 10px; border-radius: 4px; 
         }
 
         /* --- 2. 浅灰色描述 Banner (Description Banner) --- */
@@ -58,26 +57,26 @@
             background-color: #e9ecef; /* 浅蓝灰色背景 */
             padding: 50px 0;
             width: 100%;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* 底部的阴影效果 */
-            margin-bottom: 40px; /* 与下方主体内容的间距 */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
             border-bottom: 1px solid #dce0e3;
         }
 
         .banner-inner {
-            max-width: 1000px; /* 描述文字区域比标题栏稍窄 */
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 30px;
-            text-align: center; /* 内容居中 */
+            text-align: center;
         }
 
         .banner-inner h2 {
             margin: 0 0 25px 0;
             color: #444;
-            font-weight: 400; /* 字体不加粗 */
+            font-weight: 400;
             font-size: 1.8em;
+            line-height: 1.4;
         }
 
-        /* 分割线 */
         .banner-divider {
             width: 80px;
             border: none;
@@ -89,20 +88,19 @@
             color: #555;
             line-height: 1.6;
             font-size: 1.1em;
-            text-align: justify; /* 文本两端对齐，符合图片样式 */
+            text-align: justify;
         }
 
-        /* --- 3. 主体内容区域 (Tableau 容器) --- */
+        /* --- 3. 主体内容区域 --- */
         .main-container {
             max-width: 1280px;
-            margin: 0 auto 60px auto; /* 居中，底部留空 */
+            margin: 0 auto 60px auto;
             padding: 20px 30px;
-            background-color: #fff; /* 白色背景 */
-            /* 可选：给主体区域也加一点点阴影，让它浮起来 */
-            /* box-shadow: 0 2px 5px rgba(0,0,0,0.05); */ 
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+            border-radius: 8px;
         }
 
-        /* 页脚 */
         footer {
             text-align: center;
             padding: 30px;
@@ -110,6 +108,19 @@
             font-size: 0.9em;
         }
 
+        /* 移动端适配：屏幕变窄时 Logo 放标题下面 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header-logo-container img {
+                height: 60px;
+            }
+            .site-title {
+                font-size: 2.5em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -118,11 +129,8 @@
         <div class="header-content">
             <h1 class="site-title">Air for All Good</h1>
             
-            <div class="header-logos">
-                <img src="logo-dubstech.png" alt="DubsTech">
-                <img src="logo-ischool.png" alt="Information School">
-                <img src="logo-applied.png" alt="Applied Analytics">
-                <img src="logo-datathon.png" alt="Datathon">
+            <div class="header-logo-container">
+                <img src="Datathon.png" alt="Datathon Logos">
             </div>
         </div>
     </header>
@@ -131,7 +139,14 @@
         <div class="banner-inner">
             <h2>2025 In-Depth Insights into Air Quality and Livability Across the United States</h2>
             <hr class="banner-divider">
-            <p>Project description is a In-Depth Insights into Air Quality and Livability Across the United States, using analytics marked United States, alecrations, mascaraenriivibility, and dance/stractore meractional inacitites, and intenstive in demneric covering oiafresis, and oelorlin:safeach tvabition.</p>
+            <p>
+                This project aims to reveal the true picture of air quality across the United States through data visualization and analysis. 
+                We begin with a <strong>geographical overview</strong> of the entire country, capturing the current air quality status of each state and county. 
+                We then delve deeper, analyzing regional differences and the causes of <strong>core pollutants</strong> such as PM2.5 and ozone. 
+                Finally, we construct a <strong>livability risk assessment model</strong> to intuitively identify high-risk areas and areas with a high quality of life. 
+                <br><br>
+                Let's use data to collectively focus on respiratory health and the future of our environment.
+            </p>
         </div>
     </section>
 
@@ -154,19 +169,19 @@
                 <param name='language' value='en-US' />
             </object>
         </div>
+        
         <script type='text/javascript'>
             var divElement = document.getElementById('viz1770495148449');
             var vizElement = divElement.getElementsByTagName('object')[0];
-            // 简单的自适应宽度逻辑
+            // 自动宽度，默认高度
             vizElement.style.width='100%';
-            // 设置一个默认高度，Tableau 加载后通常会自己调整
             vizElement.style.height='850px'; 
             
             var scriptElement = document.createElement('script');
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
             vizElement.parentNode.insertBefore(scriptElement, vizElement);
         </script>
-        </main>
+    </main>
 
     <footer>
         &copy; 2026 Air for All Good Project. Powered by Tableau.
