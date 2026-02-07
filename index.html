@@ -5,50 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Air for All Good - Data Dashboard</title>
     <style>
-        /* 页面基础样式 */
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; margin: 0; background-color: #f8f9fa; color: #333; }
-        
-        /* 顶部 Banner 样式 */
-        .main-banner { background-color: #212529; color: #fff; padding: 60px 0; width: 100%; margin-bottom: 40px; }
-        .banner-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-        .main-banner h1 { margin: 0; font-size: 3.5em; font-weight: 700; letter-spacing: -1px; }
-        .banner-logo { height: 70px; width: auto; background-color: white; padding: 10px; border-radius: 5px; }
+        /* --- 全局样式 --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f4f4; /* 整体背景偏灰白 */
+            color: #333;
+        }
 
-        /* 主内容容器样式 */
-        .container { max-width: 1200px; margin: 0 auto 40px auto; padding: 30px; background-color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-radius: 8px; display: flex; flex-direction: column; align-items: center; }
-        
-        /* 副标题与描述样式 */
-        h2 { color: #555; font-weight: 400; margin-top: 0; line-height: 1.4; text-align: center; }
-        .description { text-align: justify; color: #555; margin-bottom: 30px; line-height: 1.6; width: 100%; font-size: 1.05em; }
-        
-        /* 页脚样式 */
-        footer { text-align: center; margin-top: 40px; margin-bottom: 20px; font-size: 0.8em; color: #999; width: 100%; }
+        /* --- 1. 顶部深色标题栏 (Header Bar) --- */
+        .site-header {
+            background-color: #1a1a1a; /* 深黑色背景 */
+            color: #ffffff;
+            padding: 25px 0; /* 上下内边距 */
+            width: 100%;
+        }
+
+        /* 标题栏内容容器 (用于 Flex 布局对齐) */
+        .header-content {
+            max-width: 1280px; /* 限制最大宽度，保持内容居中 */
+            margin: 0 auto;
+            padding: 0 30px; /* 左右留白 */
+            display: flex;
+            justify-content: space-between; /* 标题在左，Logo 在右 */
+            align-items: center; /* 垂直居中 */
+        }
+
+        .site-title {
+            margin: 0;
+            font-size: 3.8em; /* 大号标题字 */
+            font-weight: 700;
+        }
+
+        /* 右侧 Logo 区域 */
+        .header-logos {
+            display: flex;
+            align-items: center;
+            gap: 20px; /* Logo 之间的间距 */
+        }
+
+        /* Logo 图片样式 (你需要替换实际图片) */
+        .header-logos img {
+            height: 50px; /* 限制 Logo 高度，宽度自适应 */
+            width: auto;
+            /* 如果你的 Logo 是深色的，可能需要加个白色背景或滤镜，例如：
+            background-color: white; padding: 5px; border-radius: 4px; */
+        }
+
+        /* --- 2. 浅灰色描述 Banner (Description Banner) --- */
+        .description-banner {
+            background-color: #e9ecef; /* 浅蓝灰色背景 */
+            padding: 50px 0;
+            width: 100%;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* 底部的阴影效果 */
+            margin-bottom: 40px; /* 与下方主体内容的间距 */
+            border-bottom: 1px solid #dce0e3;
+        }
+
+        .banner-inner {
+            max-width: 1000px; /* 描述文字区域比标题栏稍窄 */
+            margin: 0 auto;
+            padding: 0 30px;
+            text-align: center; /* 内容居中 */
+        }
+
+        .banner-inner h2 {
+            margin: 0 0 25px 0;
+            color: #444;
+            font-weight: 400; /* 字体不加粗 */
+            font-size: 1.8em;
+        }
+
+        /* 分割线 */
+        .banner-divider {
+            width: 80px;
+            border: none;
+            border-top: 2px solid #aaa;
+            margin: 0 auto 25px auto;
+        }
+
+        .banner-inner p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1.1em;
+            text-align: justify; /* 文本两端对齐，符合图片样式 */
+        }
+
+        /* --- 3. 主体内容区域 (Tableau 容器) --- */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto 60px auto; /* 居中，底部留空 */
+            padding: 20px 30px;
+            background-color: #fff; /* 白色背景 */
+            /* 可选：给主体区域也加一点点阴影，让它浮起来 */
+            /* box-shadow: 0 2px 5px rgba(0,0,0,0.05); */ 
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.9em;
+        }
+
     </style>
 </head>
 <body>
 
-    <header class="main-banner">
-        <div class="banner-content">
-            <h1>Air for All Good</h1>
-            <img src="DubsTech.png" alt="DubsTech Logo" class="banner-logo">
+    <header class="site-header">
+        <div class="header-content">
+            <h1 class="site-title">Air for All Good</h1>
+            
+            <div class="header-logos">
+                <img src="logo-dubstech.png" alt="DubsTech">
+                <img src="logo-ischool.png" alt="Information School">
+                <img src="logo-applied.png" alt="Applied Analytics">
+                <img src="logo-datathon.png" alt="Datathon">
+            </div>
         </div>
     </header>
 
-    <div class="container">
-        <div style="text-align: center; margin-bottom: 30px; width: 100%;">
+    <section class="description-banner">
+        <div class="banner-inner">
             <h2>2025 In-Depth Insights into Air Quality and Livability Across the United States</h2>
-            <hr style="width: 60px; border: 1px solid #212529; margin: 20px auto;">
+            <hr class="banner-divider">
+            <p>Project description is a In-Depth Insights into Air Quality and Livability Across the United States, using analytics marked United States, alecrations, mascaraenriivibility, and dance/stractore meractional inacitites, and intenstive in demneric covering oiafresis, and oelorlin:safeach tvabition.</p>
         </div>
+    </section>
 
-        <p class="description">
-            This project aims to reveal the true picture of air quality across the United States through data visualization and analysis. 
-            We begin with a <strong>geographical overview</strong> of the entire country, capturing the current air quality status of each state and county. 
-            We then delve deeper, analyzing regional differences and the causes of <strong>core pollutants</strong> such as PM2.5 and ozone. 
-            Finally, we construct a <strong>livability risk assessment model</strong> to intuitively identify high-risk areas and areas with a high quality of life. 
-            <br><br>
-            Let's use data to collectively focus on respiratory health and the future of our environment.
-        </p>
-
+    <main class="main-container">
         <div class='tableauPlaceholder' id='viz1770495148449' style='position: relative'>
             <noscript>
                 <a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PW&#47;PW4HRR7XF&#47;1_rss.png' style='border: none' /></a>
@@ -67,26 +154,23 @@
                 <param name='language' value='en-US' />
             </object>
         </div>
-        
         <script type='text/javascript'>
             var divElement = document.getElementById('viz1770495148449');
             var vizElement = divElement.getElementsByTagName('object')[0];
-            if ( divElement.offsetWidth > 800 ) { 
-                vizElement.style.width='1000px'; vizElement.style.height='827px';
-            } else if ( divElement.offsetWidth > 500 ) { 
-                vizElement.style.width='1000px'; vizElement.style.height='827px';
-            } else { 
-                vizElement.style.width='100%'; vizElement.style.height='1077px';
-            } 
+            // 简单的自适应宽度逻辑
+            vizElement.style.width='100%';
+            // 设置一个默认高度，Tableau 加载后通常会自己调整
+            vizElement.style.height='850px'; 
+            
             var scriptElement = document.createElement('script');
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
             vizElement.parentNode.insertBefore(scriptElement, vizElement);
         </script>
+        </main>
 
-        <footer>
-            &copy; 2026 Powered by GitHub Pages & Tableau
-        </footer>
-    </div>
+    <footer>
+        &copy; 2026 Air for All Good Project. Powered by Tableau.
+    </footer>
 
 </body>
 </html>
