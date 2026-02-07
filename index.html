@@ -14,7 +14,7 @@
             color: #333;
         }
 
-        /* --- 1. 顶部深色标题栏 (Header Bar) --- */
+        /* --- 1. 顶部深色标题栏 --- */
         .site-header {
             background-color: #1a1a1a;
             color: #ffffff;
@@ -23,7 +23,8 @@
         }
 
         .header-content {
-            max-width: 1280px;
+            /* 【核心修改点】将原来的 1280px 改为 1100px，确保标题和Logo向中间靠拢，与下方对齐 */
+            max-width: 1100px; 
             margin: 0 auto;
             padding: 0 30px;
             display: flex;
@@ -38,18 +39,22 @@
             white-space: nowrap;
         }
 
-        /* 右侧 Logo 容器 */
+        /* Logo 容器 */
         .header-logo-container {
             display: flex;
             align-items: center;
         }
 
         .header-logo-container img {
-            height: 80px; 
+            height: 70px; /* 稍微调整高度，让它在 Header 里更协调 */
             width: auto;
+            /* 我加了白色背景，这样效果就和你的截图一模一样了 */
+            background-color: white; 
+            padding: 5px 10px; 
+            border-radius: 4px; 
         }
 
-        /* --- 2. 浅灰色描述 Banner (Description Banner) --- */
+        /* --- 2. 浅灰色描述 Banner --- */
         .description-banner {
             background-color: #e9ecef;
             padding: 50px 0;
@@ -60,7 +65,8 @@
         }
 
         .banner-inner {
-            max-width: 1000px;
+            /* 【核心修改点】统一宽度为 1100px */
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 30px;
             text-align: center;
@@ -85,25 +91,25 @@
             color: #555;
             line-height: 1.6;
             font-size: 1.1em;
-            text-align: justify;
+            text-align: justify; /* 保持两端对齐 */
         }
 
         /* --- 3. 主体内容区域 --- */
         .main-container {
-            max-width: 1280px;
+            /* 【核心修改点】统一宽度为 1100px，让图表也和标题对齐 */
+            max-width: 1100px;
             margin: 0 auto 60px auto;
-            padding: 40px 30px; /* 增加一点内边距 */
+            padding: 40px 30px;
             background-color: #fff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
             border-radius: 8px;
         }
 
-        /* 图表之间的分割线样式 */
         .chart-separator {
             border: 0;
             height: 1px;
             background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-            margin: 60px 0; /* 上下间距 */
+            margin: 60px 0;
         }
 
         footer {
@@ -177,6 +183,7 @@
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
             vizElement.parentNode.insertBefore(scriptElement, vizElement);
         </script>
+
         <hr class="chart-separator">
 
         <div class='tableauPlaceholder' id='viz1770504438446' style='position: relative'>
@@ -194,7 +201,8 @@
                 <param name='display_spinner' value='yes' />
                 <param name='display_overlay' value='yes' />
                 <param name='display_count' value='yes' />
-                <param name='language' value='en-US' /> </object>
+                <param name='language' value='en-US' />
+            </object>
         </div>
         <script type='text/javascript'>
             var divElement = document.getElementById('viz1770504438446');
@@ -205,7 +213,8 @@
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
             vizElement.parentNode.insertBefore(scriptElement, vizElement);
         </script>
-        </main>
+
+    </main>
 
     <footer>
         &copy; 2026 Air for All Good Project. Powered by Tableau.
