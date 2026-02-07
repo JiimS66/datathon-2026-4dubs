@@ -16,9 +16,9 @@
 
         /* --- 1. 顶部深色标题栏 (Header Bar) --- */
         .site-header {
-            background-color: #1a1a1a; /* 深黑色背景 */
+            background-color: #1a1a1a;
             color: #ffffff;
-            padding: 20px 0; /* 上下内边距 */
+            padding: 20px 0;
             width: 100%;
         }
 
@@ -27,7 +27,7 @@
             margin: 0 auto;
             padding: 0 30px;
             display: flex;
-            justify-content: space-between; /* 左标题，右Logo */
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -35,7 +35,7 @@
             margin: 0;
             font-size: 3.5em; 
             font-weight: 700;
-            white-space: nowrap; /* 防止标题换行 */
+            white-space: nowrap;
         }
 
         /* 右侧 Logo 容器 */
@@ -44,17 +44,14 @@
             align-items: center;
         }
 
-        /* Logo 图片样式 */
         .header-logo-container img {
-            height: 80px; /* 稍微调大一点高度，让 Logo 文字更清晰 */
-            width: auto;  /* 保持比例 */
-            /* 如果图片自带深色文字，看不清的话，可以打开下面这行加个白底圆角： */
-             background-color: white; padding: 5px 10px; border-radius: 4px; 
+            height: 80px; 
+            width: auto;
         }
 
         /* --- 2. 浅灰色描述 Banner (Description Banner) --- */
         .description-banner {
-            background-color: #e9ecef; /* 浅蓝灰色背景 */
+            background-color: #e9ecef;
             padding: 50px 0;
             width: 100%;
             box-shadow: 0 6px 12px rgba(0,0,0,0.1);
@@ -95,10 +92,18 @@
         .main-container {
             max-width: 1280px;
             margin: 0 auto 60px auto;
-            padding: 20px 30px;
+            padding: 40px 30px; /* 增加一点内边距 */
             background-color: #fff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
             border-radius: 8px;
+        }
+
+        /* 图表之间的分割线样式 */
+        .chart-separator {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+            margin: 60px 0; /* 上下间距 */
         }
 
         footer {
@@ -108,18 +113,10 @@
             font-size: 0.9em;
         }
 
-        /* 移动端适配：屏幕变窄时 Logo 放标题下面 */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .header-logo-container img {
-                height: 60px;
-            }
-            .site-title {
-                font-size: 2.5em;
-            }
+            .header-content { flex-direction: column; gap: 15px; }
+            .header-logo-container img { height: 60px; }
+            .site-title { font-size: 2.5em; }
         }
     </style>
 </head>
@@ -128,7 +125,6 @@
     <header class="site-header">
         <div class="header-content">
             <h1 class="site-title">Air for All Good</h1>
-            
             <div class="header-logo-container">
                 <img src="Datathon.png" alt="Datathon Logos">
             </div>
@@ -151,16 +147,19 @@
     </section>
 
     <main class="main-container">
-        <div class='tableauPlaceholder' id='viz1770495148449' style='position: relative'>
+        
+        <div class='tableauPlaceholder' id='viz1770504390091' style='position: relative'>
             <noscript>
-                <a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PW&#47;PW4HRR7XF&#47;1_rss.png' style='border: none' /></a>
+                <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;1&#47;1_rss.png' style='border: none' /></a>
             </noscript>
             <object class='tableauViz' style='display:none;'>
                 <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
                 <param name='embed_code_version' value='3' /> 
-                <param name='path' value='shared&#47;PW4HRR7XF' /> 
+                <param name='site_root' value='' />
+                <param name='name' value='airreport&#47;1' />
+                <param name='tabs' value='yes' />
                 <param name='toolbar' value='yes' />
-                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;PW&#47;PW4HRR7XF&#47;1.png' /> 
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;1&#47;1.png' /> 
                 <param name='animate_transition' value='yes' />
                 <param name='display_static_image' value='yes' />
                 <param name='display_spinner' value='yes' />
@@ -169,19 +168,44 @@
                 <param name='language' value='en-US' />
             </object>
         </div>
-        
         <script type='text/javascript'>
-            var divElement = document.getElementById('viz1770495148449');
+            var divElement = document.getElementById('viz1770504390091');
             var vizElement = divElement.getElementsByTagName('object')[0];
-            // 自动宽度，默认高度
             vizElement.style.width='100%';
-            vizElement.style.height='850px'; 
-            
+            vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
             var scriptElement = document.createElement('script');
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
             vizElement.parentNode.insertBefore(scriptElement, vizElement);
         </script>
-    </main>
+        <hr class="chart-separator">
+
+        <div class='tableauPlaceholder' id='viz1770504438446' style='position: relative'>
+            <noscript>
+                <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;5Z&#47;5ZBGB5Z3Y&#47;1_rss.png' style='border: none' /></a>
+            </noscript>
+            <object class='tableauViz' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                <param name='embed_code_version' value='3' /> 
+                <param name='path' value='shared&#47;5ZBGB5Z3Y' /> 
+                <param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;5Z&#47;5ZBGB5Z3Y&#47;1.png' /> 
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='language' value='en-US' /> </object>
+        </div>
+        <script type='text/javascript'>
+            var divElement = document.getElementById('viz1770504438446');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            vizElement.style.width='100%';
+            vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        </script>
+        </main>
 
     <footer>
         &copy; 2026 Air for All Good Project. Powered by Tableau.
