@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的 Tableau 数据仪表板</title>
+    <title>Air for All Good - 数据仪表板</title>
     <style>
         /* 页面基础样式 */
         body {
@@ -14,40 +14,64 @@
             color: #333;
         }
 
+        /* === 新增 Banner 区域样式 (仿照示例网站) === */
+        .main-banner {
+            background-color: #212529; /* 深色背景，例如 #212529 或 #000 */
+            color: #ffffff; /* 白色文字 */
+            padding: 80px 0; /* 上下增加高度，显得更有气势 */
+            width: 100%; /* 全宽 */
+            margin-bottom: 40px; /* 和下方白色内容块保持距离 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Banner 内部的内容容器，用于对齐 */
+        .banner-content {
+            max-width: 1200px; /* 和下方主容器保持对齐宽度 */
+            margin: 0 auto; /* 居中 */
+            padding: 0 20px; /* 左右留边距，防止在小屏贴边 */
+            text-align: left; /* 标题靠左对齐 */
+        }
+
+        /* Banner 里的主标题样式 */
+        .main-banner h1 {
+            margin: 0;
+            font-size: 3.5em; /* 超大字体 */
+            font-weight: 700; /* 加粗 */
+            letter-spacing: -1px; /* 字间距稍微紧凑点 */
+        }
+        /* ========================================== */
+
+
         /* 内容容器 */
         .container {
-            /* 注意：因为你的新图表固定宽度约为1000px，这里把最大宽度稍微放宽一点，或者设为100%以适应图表 */
             max-width: 1200px; 
-            margin: 40px auto;
-            padding: 20px;
+            /* 修改了 margin-top 为 0 */
+            margin: 0 auto 40px auto;
+            padding: 30px; /* 增加内部内边距 */
             background-color: #ffffff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             border-radius: 8px;
-            /* 让内部元素居中，这样图表也会居中 */
             display: flex;
             flex-direction: column;
             align-items: center; 
         }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 10px;
-            color: #2c3e50;
-            width: 100%;
-        }
+        /* 原来的 h1 样式已删除 */
 
         .description {
-            text-align: center;
-            color: #666;
+            text-align: left; /* 描述文字也改为靠左，更像文章 */
+            color: #555;
             margin-bottom: 30px;
-            line-height: 1.6;
+            line-height: 1.8;
             width: 100%;
-            max-width: 800px; /* 文字部分不要太宽，方便阅读 */
+            font-size: 1.1em;
+            /* max-width: 800px;  如果希望文字窄一点可以取消注释这一行 */
         }
 
         footer {
             text-align: center;
             margin-top: 40px;
+            margin-bottom: 20px;
             font-size: 0.8em;
             color: #999;
             width: 100%;
@@ -56,8 +80,12 @@
 </head>
 <body>
 
+    <header class="main-banner">
+        <div class="banner-content">
+            <h1>Air for All Good</h1>
+        </div>
+    </header>
     <div class="container">
-        <h1>Tableau 数据分析项目展示</h1>
         
         <p class="description">
             这是一个基于 Tableau Public 的可视化仪表板。<br>
@@ -88,7 +116,6 @@
         <script type='text/javascript'>
             var divElement = document.getElementById('viz1770495148449');
             var vizElement = divElement.getElementsByTagName('object')[0];
-            // 你的新代码自带了宽度判断逻辑：
             if ( divElement.offsetWidth > 800 ) { 
                 vizElement.style.width='1000px';
                 vizElement.style.height='827px';
@@ -103,10 +130,11 @@
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
             vizElement.parentNode.insertBefore(scriptElement, vizElement);
         </script>
-        <footer>
-            &copy; 2026 Powered by GitHub Pages & Tableau
-        </footer>
-    </div>
+        </div>
+    
+    <footer>
+        &copy; 2026 Powered by GitHub Pages & Tableau
+    </footer>
 
 </body>
 </html>
