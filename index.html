@@ -7,7 +7,6 @@
     <style>
         /* --- 0. 设计系统 (Design System) --- */
         :root {
-            /* 核心色盘 */
             --primary-color: #2E5C55;      
             --accent-color: #4DB6AC;       
             --bg-body: #F4F7F6;            
@@ -15,11 +14,7 @@
             --text-main: #2C3E50;          
             --text-secondary: #546E7A;     
             --text-light: #78909C;
-
-            /* 间距与圆角 */
             --border-radius: 16px;
-            
-            /* 阴影 */
             --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
         }
@@ -203,7 +198,7 @@
             margin: 0;
         }
 
-        /* --- 文本内容增强样式 (Typography) --- */
+        /* --- 文本内容增强样式 --- */
         .card-text-block {
             color: var(--text-secondary);
             font-size: 1rem;
@@ -212,20 +207,18 @@
             text-align: justify;
         }
 
-        /* 图表上方的描述文字 */
         .chart-description {
             font-size: 0.95rem;
             color: var(--text-secondary);
-            background-color: #F4F8F7; /* 极淡的绿色背景 */
+            background-color: #F4F8F7; 
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
             border-left: 4px solid var(--accent-color);
         }
 
-        /* 方法论板块 */
         .method-box {
-            background-color: rgba(46, 92, 85, 0.05); /* 主色调的最淡变体 */
+            background-color: rgba(46, 92, 85, 0.05); 
             padding: 20px;
             border-radius: 12px;
             margin-top: 25px;
@@ -243,7 +236,7 @@
             color: var(--text-secondary);
         }
 
-        /* --- 数据表格样式 (Data Table) --- */
+        /* --- 数据表格样式 --- */
         .table-responsive {
             overflow-x: auto;
             margin: 20px 0;
@@ -277,7 +270,6 @@
             background-color: #fafafa;
         }
 
-        /* 结论引用块 */
         .conclusion-block {
             margin-top: 30px;
             padding-top: 20px;
@@ -297,11 +289,35 @@
             word-break: break-all;
         }
 
-        /* --- 数据集介绍卡片专用 --- */
-        .card-body-split { display: flex; align-items: flex-start; gap: 40px; }
-        .split-text { flex: 1; min-width: 300px; }
-        .split-image { flex: 1; display: flex; justify-content: center; align-items: center; }
-        .split-image img { width: 100%; max-width: 500px; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(77, 182, 172, 0.15); object-fit: cover; }
+        /* --- [关键修改] 数据集介绍卡片专用样式 --- */
+        .card-body-split {
+            display: flex;
+            align-items: center; /* 修改：垂直居中对齐 */
+            gap: 40px; 
+        }
+
+        .split-text { 
+            flex: 1; 
+            min-width: 300px; 
+        }
+        
+        .split-image { 
+            flex: 1; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        
+        .split-image img {
+            width: auto;      /* 修改：宽度自动 */
+            max-width: 100%;  /* 不超出容器 */
+            max-height: 320px; /* 修改：限制最大高度，使其与左侧文字块高度大致匹配 */
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(77, 182, 172, 0.15);
+            object-fit: contain; /* 保持比例不裁剪 */
+        }
+        
         .dataset-list { margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 0.95rem; }
         .dataset-list li { margin-bottom: 10px; }
         .dataset-list li::marker { color: var(--accent-color); }
@@ -314,6 +330,7 @@
             .sidebar-nav { display: none; }
             .header-content { padding: 15px 20px; }
             .card-body-split { flexDirection: column-reverse; gap: 20px; }
+            .split-image img { max-height: none; width: 100%; } /* 移动端取消高度限制 */
         }
     </style>
 </head>
@@ -532,7 +549,8 @@
                                     <td>Middle 60%</td>
                                     <td>10.88%</td>
                                 </tr>
-                                <tr style="background-color: #fff3f3;"> <td style="color: #d32f2f;">High EJ (Top 20%)</td>
+                                <tr style="background-color: #fff3f3;"> 
+                                    <td style="color: #d32f2f;">High EJ (Top 20%)</td>
                                     <td style="color: #d32f2f; font-weight:bold;">12.42%</td>
                                 </tr>
                                 
@@ -597,7 +615,6 @@
         scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
         document.body.appendChild(scriptElement);
 
-        // 滚动监听
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('.content-group');
             const navLinks = document.querySelectorAll('.nav-link');
