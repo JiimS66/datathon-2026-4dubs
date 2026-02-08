@@ -494,6 +494,7 @@
             background: #fff;
             padding: 10px;
             border-radius: 16px;
+            flex-direction: column; /* Ensure vertical stacking for image and source */
         }
         
         .split-image img {
@@ -644,7 +645,7 @@
                                 </div>
                                 <div class="data-point">
                                     <span class="label">AQI Categoriy</span>
-                                    <span class="value">6-level from Good to Hazadous</span>
+                                    <span class="value">7-level from Good to Hazadous</span>
                                 </div>
                                 <div class="data-point">
                                     <span class="label">Analysis Type</span>
@@ -657,7 +658,10 @@
                             </div>
                         </div>
                         <div class="split-image">
-                            <img src="AQI.png" alt="AQI Data Flow Map">
+                            <img src="AQI.jpg" alt="AQI Data Flow Map">
+                            <p style="margin-top: 10px; font-size: 0.7rem; color: #8CA0B3; text-align: center;">
+                                Source: <a href="https://cleanairenc.org/blog/2017/02/16/north-carolinas-air-quality/" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px solid #ddd;">https://cleanairenc.org/blog/2017/02/16/north-carolinas-air-quality/</a>
+                            </p>
                         </div>
                     </div>
                 </article>
@@ -975,7 +979,7 @@
             </section>
 
             <div class="final-quote">
-                Data is the evidence · Policy is the cure · Equity is the goal
+                "Data is the evidence. Policy is the cure. Equity is the goal."
             </div>
             
             <div class="addendum-text">
