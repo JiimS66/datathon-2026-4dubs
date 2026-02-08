@@ -103,7 +103,7 @@
             opacity: 1;
         }
 
-        /* --- 3. Hero 区域 --- */
+        /* --- 3. Hero 区域 (The Hook) --- */
         .hero-section {
             position: relative;
             max-width: 1000px;
@@ -131,7 +131,7 @@
             font-size: 1.25rem;
             color: var(--text-secondary);
             margin-bottom: 0;
-            max-width: 700px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
             font-weight: 400;
@@ -393,6 +393,15 @@
             padding-top: 30px;
             border-top: 2px solid var(--tableau-green);
         }
+        
+        .final-quote {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--tableau-green);
+            margin: 60px 0 20px 0;
+            letter-spacing: -0.02em;
+        }
 
         .source-citation {
             margin-top: 24px;
@@ -402,6 +411,17 @@
             padding: 12px;
             border: 1px solid #eee;
             border-radius: 6px;
+        }
+        
+        .addendum-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
 
         /* --- Dataset Grid --- */
@@ -507,11 +527,9 @@
     </header>
 
     <section class="hero-section">
-        <h1>Unveiling the Invisible: <br><span>US Air Quality 2025</span></h1>
+        <h1>Inequity in the Air: <br><span>Zip Code Determines Destiny</span></h1>
         <p>
-            Data-Driven Insights into Respiratory Health & Environmental Justice.
-            <br>
-            <span style="font-size: 0.9em; opacity: 0.8; display: block; margin-top: 10px;">Powered by EPA Data & Advanced Analytics</span>
+            A data-driven investigation into how pollution fingerprints, geography, and social vulnerability intersect to shape America’s respiratory crisis.
         </p>
     </section>
 
@@ -527,38 +545,38 @@
                 </div>
 
                 <div class="nav-group">
-                    <a href="#group-overview" class="nav-link main">Air Quality Overview</a>
+                    <a href="#group-overview" class="nav-link main">The Geography of Inequity</a>
                     <div class="nav-sub-container">
-                        <a href="#card-map" class="nav-link sub">Geographical Status</a>
-                        <a href="#card-trends" class="nav-link sub">Most Polluted Area</a>
+                        <a href="#card-map" class="nav-link sub">Status Quo</a>
+                        <a href="#card-trends" class="nav-link sub">A Tale of Two Toxins</a>
                     </div>
                 </div>
 
                 <div class="nav-group">
-                    <a href="#group-analysis" class="nav-link main">Risk Assessment</a>
+                    <a href="#group-analysis" class="nav-link main">The Mechanics</a>
                     <div class="nav-sub-container">
-                        <a href="#card-pollutants" class="nav-link sub">Pollutant Analysis</a>
-                        <a href="#card-comprehensive" class="nav-link sub">Pollutant by Region</a>
+                        <a href="#card-pollutants" class="nav-link sub">Risk Assessment</a>
+                        <a href="#card-comprehensive" class="nav-link sub">Pick Your Poison</a>
                     </div>
                 </div>
 
                 <div class="nav-group">
-                    <a href="#group-livability" class="nav-link main">Livability & Future</a>
+                    <a href="#group-impact" class="nav-link main">The Double Burden</a>
                     <div class="nav-sub-container">
-                        <a href="#card-livability" class="nav-link sub">Livability Index</a>
-                        <a href="#card-distribution" class="nav-link sub">AQI Distribution</a>
-                    </div>
-                </div>
-
-                <div class="nav-group">
-                    <a href="#group-impact" class="nav-link main">Health & Impacts</a>
-                    <div class="nav-sub-container">
-                        <a href="#card-ej-intro" class="nav-link sub">EJ Analysis Intro</a>
-                        <a href="#card-asthma" class="nav-link sub">Asthma & Vulnerability</a>
+                        <a href="#card-ej-intro" class="nav-link sub">EJ Introduction</a>
+                        <a href="#card-asthma" class="nav-link sub">Vulnerability Multiplier</a>
                         <a href="#card-ej-comp" class="nav-link sub">EJ Composition</a>
                         <a href="#card-geo-inequity" class="nav-link sub">Inequity: PM2.5</a>
                         <a href="#card-geo-ozone" class="nav-link sub">Inequity: Ozone</a>
-                        <a href="#card-conclusion" class="nav-link sub">Conclusion</a>
+                        <a href="#card-conclusion" class="nav-link sub">Final Verdict</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <a href="#group-livability" class="nav-link main">Finding Sanctuary</a>
+                    <div class="nav-sub-container">
+                        <a href="#card-livability" class="nav-link sub">Blueprint for Future</a>
+                        <a href="#card-distribution" class="nav-link sub">Long-tail Distribution</a>
                     </div>
                 </div>
             </nav>
@@ -611,11 +629,11 @@
             <section id="group-overview" class="content-group">
                 <article id="card-map" class="data-card">
                     <div class="card-header">
-                        <h3 class="card-title">Nationwide Air Quality Index Geographic Map (2025 Snapshot)</h3>
+                        <h3 class="card-title">The Geography of Inequity</h3>
                     </div>
                     <div class="insight-box">
-                        <h5>Key Insight: Regional Disparities</h5>
-                        <p>In 2025, regions with superior air quality are concentrated in the Pacific Northwest (states such as Washington, Montana, and Oregon). The most significant air quality challenges remain clustered in Southern California, while the distribution across the Central and Eastern U.S. is relatively uniform without distinct extremes.</p>
+                        <h5>Key Insight: "A Fractured Nation."</h5>
+                        <p>The 2025 data reveals a stark geographic divide. While the Pacific Northwest and rural Northeast serve as the nation's "lungs" with consistently good air, the Southwest border regions and Southern California bear the heaviest burden. This is not just weather; it is structural inequality visible from space. The data clearly demarcates 'Sanctuary Zones' in states like Maine and Wyoming, contrasting sharply with the 'Hazard Zones' of the South.</p>
                     </div>
                     <div class='tableauPlaceholder' id='viz1770512051199' style='position: relative'>
                         <noscript><a href='#'><img alt='US Air Quality Map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ma&#47;map1_17705120367170&#47;USAirQualityMap&#47;1_rss.png' style='border: none' /></a></noscript>
@@ -639,11 +657,11 @@
                 
                 <article id="card-trends" class="data-card">
                     <div class="card-header">
-                        <h3 class="card-title">Most Polluted Area</h3>
+                        <h3 class="card-title">A Tale of Two Toxins: Chronic Smog vs. Acute Spikes</h3>
                     </div>
                     <div class="insight-box">
-                        <h5>Key Insight: Duo-pattern</h5>
-                        <p>The data reveals a dual-pattern of air pollution: Southern California exhibits chronic exposure with high Median AQI levels, while regions like El Paso (TX) and Pinal (AZ) face acute hazards, characterized by extreme AQI spikes exceeding 1,000, likely driven by localized environmental events.</p>
+                        <h5>Key Insight: "Different Risks, Same Danger."</h5>
+                        <p>Pollution isn't uniform. Residents in Riverside, CA suffer from 'Chronic Exposure'—a daily grind of unhealthy smog driven by traffic (Median AQI 87, 184 Ozone days). In sharp contrast, El Paso, TX faces 'Acute Hazards'—sudden, violent spikes reaching a staggering Max AQI of 2,122, driven by industrial dust events despite having cleaner average days. Policy solutions must address these two distinct threat profiles.</p>
                     </div>
                     <div class='tableauPlaceholder' id='viz1770516598444' style='position: relative'>
                         <noscript><a href='#'><img alt='Top 10 Polluted County ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;BT&#47;BTH4TH63R&#47;1_rss.png' style='border: none' /></a></noscript>
@@ -695,11 +713,11 @@
 
                 <article id="card-comprehensive" class="data-card">
                     <div class="card-header">
-                        <h3 class="card-title">Pollutant by Region</h3>
+                        <h3 class="card-title">Pick Your Poison: The Geographic Fingerprint</h3>
                     </div>
                     <div class="insight-box">
-                        <h5>Key Insight: Regional Composition</h5>
-                        <p>The Western U.S. exhibits a stark pollutant divide: PM2.5 dominates the Northwest, Ozone and PM10 are the primary drivers in the Southwest (California). While the Central and Eastern U.S. remain relatively uniform, NO2 emerges as a rare primary pollutant, localized only in specific areas such as Carbon County, WY, and select counties in Texas.</p>
+                        <h5>Key Insight: "Geography Dictates the Toxin."</h5>
+                        <p>The West is divided by fire and traffic: PM2.5 dominates the wildfire-prone Northwest, while Ozone blankets the car-centric culture of Southern California. Moving inland, industrial signatures emerge—NO₂ (Nitrogen Dioxide) hotspots appear exclusively in energy corridors like Carbon County, WY (181 days of NO₂) and industrial Texas, revealing the invisible footprint of combustion and power generation.</p>
                     </div>
                     <div class='tableauPlaceholder' id='viz1770512336534' style='position: relative'>
                         <noscript><a href='#'><img alt='The Dominant Pollutant Map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Th&#47;TheDominantPollutantMap&#47;TheDominantPollutantMap&#47;1_rss.png' style='border: none' /></a></noscript>
@@ -722,80 +740,21 @@
                 </article>
             </section>
 
-            <section id="group-livability" class="content-group">
-                <article id="card-livability" class="data-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Livability & Future Outlook</h3>
-                        <span class="expert-badge">New Indicator</span>
-                    </div>
-                    <div class="insight-box">
-                        <h5>Key Insight: Livability Profiling</h5>
-                        <p>Synthesizing air quality data with environmental stability metrics provides a comprehensive "Livability Score". This visualization allows users to identify regions that offer the optimal balance between industrial activity and respiratory health safety.</p>
-                    </div>
-                    <div class='tableauPlaceholder' id='viz1770515492394' style='position: relative'>
-                        <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;5&#47;1_rss.png' style='border: none' /></a></noscript>
-                        <object class='tableauViz' style='display:none;'>
-                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                            <param name='embed_code_version' value='3' /> 
-                            <param name='site_root' value='' />
-                            <param name='name' value='airreport&#47;5' />
-                            <param name='tabs' value='yes' /> 
-                            <param name='toolbar' value='yes' />
-                            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;5&#47;1.png' /> 
-                            <param name='animate_transition' value='yes' />
-                            <param name='display_static_image' value='yes' />
-                            <param name='display_spinner' value='yes' />
-                            <param name='display_overlay' value='yes' />
-                            <param name='display_count' value='yes' />
-                            <param name='language' value='en-US' />
-                        </object>
-                    </div>
-                </article>
-
-                <article id="card-distribution" class="data-card">
-                    <div class="card-header">
-                        <h3 class="card-title">2025 AQI Distribution by State</h3>
-                    </div>
-                    <div class="insight-box">
-                        <h5>Key Insight: Long-tail Distribution</h5>
-                        <p>The boxplot highlights a significant 'long-tail distribution' in U.S. air quality: while most counties maintain a tight interquartile range within healthy levels, Western states exhibit extensive whiskers and numerous outliers. This visualizes the high environmental volatility in these regions, where localized extreme events cause frequent, severe departures from the median.</p>
-                    </div>
-                    <div class='tableauPlaceholder' id='viz1770515643423' style='position: relative'>
-                        <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;8&#47;1_rss.png' style='border: none' /></a></noscript>
-                        <object class='tableauViz' style='display:none;'>
-                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                            <param name='embed_code_version' value='3' /> 
-                            <param name='site_root' value='' />
-                            <param name='name' value='airreport&#47;8' />
-                            <param name='tabs' value='yes' /> 
-                            <param name='toolbar' value='yes' />
-                            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;8&#47;1.png' /> 
-                            <param name='animate_transition' value='yes' />
-                            <param name='display_static_image' value='yes' />
-                            <param name='display_spinner' value='yes' />
-                            <param name='display_overlay' value='yes' />
-                            <param name='display_count' value='yes' />
-                            <param name='language' value='en-US' />
-                        </object>
-                    </div>
-                </article>
-            </section>
-
             <section id="group-impact" class="content-group">
                 
                 <article id="card-ej-intro" class="data-card">
                     <div class="card-header">
-                        <h3 class="card-title">Environmental Justice & Health Disparities</h3>
+                        <h3 class="card-title">The Double Burden: When Poverty Meets Pollution</h3>
                         <span class="expert-badge">Crucial Finding</span>
                     </div>
                     <div class="card-text-block">
-                        <p>This part examines environmental justice in U.S. air quality by integrating county-level AQI data with the EPA Environmental Justice (EJ) Index. We construct an <strong>Unhealthy Risk Index</strong> based on pollutant-specific unhealthy day counts, emphasizing PM2.5 and Ozone, and assess community vulnerability using EJ percentiles. Counties are compared using a <strong>quantile-based framework</strong>, focusing on the top and bottom 20% of pollution and EJ risk.</p>
-                        <p>Results show that <strong>high-pollution counties are disproportionately concentrated in high EJ vulnerability groups</strong>, and that counties facing both high pollution and high EJ risk exhibit <strong>significantly higher asthma prevalence</strong>, indicating compounding health impacts. Pollutant decomposition identifies <strong>PM2.5</strong> and Ozone as the primary drivers of pollution burden, with clear regional clustering of high-risk counties.</p>
+                        <p>This part examines environmental justice in U.S. air quality by integrating county-level AQI data with the EPA Environmental Justice (EJ) Index. We construct an Unhealthy Risk Index based on pollutant-specific unhealthy day counts, emphasizing PM2.5 and Ozone, and assess community vulnerability using EJ percentiles. Counties are compared using a quantile-based framework, focusing on the top and bottom 20% of pollution and EJ risk.</p>
+                        <p>Results show that high-pollution counties are disproportionately concentrated in high EJ vulnerability groups, and that counties facing both high pollution and high EJ risk exhibit significantly higher asthma prevalence, indicating compounding health impacts. Pollutant decomposition identifies PM2.5 and Ozone as the primary drivers of pollution burden, with clear regional clustering of high-risk counties.</p>
                     </div>
                     
                     <div class="method-box">
                         <h4>Methodology Note</h4>
-                        <p>This analysis applies <strong>feature aggregation, percentile stratification, and subgroup comparison</strong> to produce interpretable, policy-relevant insights without relying on predictive modeling.</p>
+                        <p>This analysis applies feature aggregation, percentile stratification, and subgroup comparison to produce interpretable, policy-relevant insights without relying on predictive modeling.</p>
                     </div>
                 </article>
 
@@ -804,7 +763,8 @@
                         <h3 class="card-title">Asthma Prevalence & Vulnerability</h3>
                     </div>
                     <div class="insight-box">
-                        <p>Average county-level asthma prevalence by Environmental Justice (EJ) group under different pollution risk levels, showing amplified health impacts in high EJ counties under high pollution conditions.</p>
+                        <h5>Key Insight: "Vulnerability is a Multiplier."</h5>
+                        <p>The data confirms a cruel reality: Residents in high-vulnerability communities don't just face poverty; they face a 20% higher asthma prevalence (12.42% vs 10.24%) compared to wealthier regions. The gap widens drastically in polluted areas, proving that social vulnerability acts as a multiplier for environmental health risks. We are seeing a cycle where the most vulnerable populations are forced to breathe the deadliest air.</p>
                     </div>
                     <div class='tableauPlaceholder' id='viz1770511153978' style='position: relative'>
                         <noscript><a href='#'><img alt='Asthma Prevalence Increases with Environmental Justice Vulnerability, Especially Under High Pollution ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauTab_17705075189980&#47;AsthmaPrevalenceIncreaseswithEnvironmentalJusticeVulnerabilityEspeciallyUnderHighPollution&#47;1_rss.png' style='border: none' /></a></noscript>
@@ -818,9 +778,6 @@
                     <div class="card-header">
                         <h3 class="card-title">EJ Composition in High Pollution Areas</h3>
                     </div>
-                    <div class="insight-box">
-                        <p>Composition of EJ risk groups within high- and medium-pollution counties, showing the overrepresentation of high-EJ counties and the dominant contribution of PM2.5 and Ozone exposure.</p>
-                    </div>
                     <div class='tableauPlaceholder' id='viz1770511203453' style='position: relative'>
                         <noscript><a href='#'><img alt='Fig2_EJ_Composition_by_Pollution ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Hi&#47;HighEnvironmentalJusticeCountiesAreDisproportionatelyRepresentedAmongHigh-PollutionCounties&#47;Fig2_EJ_Composition_by_Pollution&#47;1_rss.png' style='border: none' /></a></noscript>
                         <object class='tableauViz'  style='display:none;'>
@@ -833,9 +790,6 @@
                     <div class="card-header">
                         <h3 class="card-title">Geographic Distribution of Inequities: PM2.5 Driver</h3>
                     </div>
-                    <div class="insight-box">
-                        <p>Geographic distribution of high-risk counties reveals regional clustering of combined pollution and environmental justice burden, indicating systematic and place-based exposure inequities.</p>
-                    </div>
                     <div class='tableauPlaceholder' id='viz1770511312112' style='position: relative'>
                         <noscript><a href='#'><img alt='Fig3_Driver_PM25 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Fig3_Driver_PM25&#47;Fig3_Driver_PM25&#47;1_rss.png' style='border: none' /></a></noscript>
                         <object class='tableauViz'  style='display:none;'>
@@ -847,9 +801,6 @@
                 <article id="card-geo-ozone" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">Geographic Distribution of Inequities: Ozone Driver</h3>
-                    </div>
-                    <div class="insight-box">
-                        <p>Ozone exposure contributes substantially to unhealthy risk across EJ strata, reinforcing pollution-driven inequities. High EJ vulnerability amplifies health risk even when population size is comparatively smaller.</p>
                     </div>
                     <div class='tableauPlaceholder' id='viz1770521500387' style='position: relative'>
                         <noscript><a href='#'><img alt='Fig3_Driver_Ozone ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Fig3_Driver_PM25&#47;Fig3_Driver_Ozone&#47;1_rss.png' style='border: none' /></a></noscript>
@@ -873,7 +824,7 @@
 
                 <article id="card-conclusion" class="data-card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Evidence & Conclusion</h3>
+                        <h3 class="card-title">Final Verdict: The Compound Burden of Inequity</h3>
                     </div>
                     
                     <p style="margin-bottom: 20px; color: var(--text-secondary);"><strong>Summary Table: Average Asthma Prevalence by Risk Group</strong></p>
@@ -919,20 +870,98 @@
                     </div>
 
                     <div class="conclusion-block">
-                        <h4 style="color: var(--tableau-green); display:flex; align-items:center; gap:10px;">
-                            <span>🏁</span> Conclusion
-                        </h4>
                         <p class="card-text-block">
-                            Counties with higher environmental justice vulnerability experience higher asthma prevalence even at similar pollution levels, with disparities amplified under high pollution conditions. This suggests that pollution-related health risks are shaped by underlying social and environmental vulnerability, not exposure alone. Overall, the findings highlight the need for equity-centered, place-based environmental and public health interventions.
+                            "Our analysis reveals a strong statistical association: Environmental vulnerability and social vulnerability do not just co-exist; they compound each other."
+                        </p>
+                        <p class="card-text-block">
+                            Through a stratified risk analysis (Top 20% Segmentation), we observed that air quality is not evenly distributed. High-pollution counties are disproportionately concentrated in communities with higher Environmental Justice (EJ) vulnerability.
+                        </p>
+                        <p class="card-text-block">
+                            The health outcomes of this intersection are stark. Our data shows a clear correlation: Counties falling into the "High Pollution + High Vulnerability" quadrant exhibit a 20% higher asthma prevalence (12.42%) compared to "Low Pollution + Low Vulnerability" regions (10.24%).
+                        </p>
+                        <p class="card-text-block">
+                            While this analysis does not establish a singular causal link, the pattern suggests a synergistic relationship: social vulnerability acts as a multiplier, intensifying the health impacts of poor air quality. Clean air is currently a luxury defined by geography, but the data demands it become a universal right.
                         </p>
                     </div>
 
                     <div class="source-citation">
-                        <strong>Source:</strong> Centers for Disease Control and Prevention and Agency for Toxic Substances Disease Registry. [2024] Environmental Justice Index. Accessed [02/07/2025]. https://atsdr.cdc.gov/place-health/php/eji/eji-data-download.html
+                        <strong>Source:</strong> EJI Data Source: Centers for Disease Control and Prevention (CDC) & Agency for Toxic Substances Disease Registry. [2024] Environmental Justice Index. Accessed [02/07/2025].
                     </div>
                 </article>
 
             </section>
+
+            <section id="group-livability" class="content-group">
+                <article id="card-livability" class="data-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Finding Sanctuary: The Quest for Breathable Space</h3>
+                        <span class="expert-badge">New Indicator</span>
+                    </div>
+                    <div class="insight-box">
+                        <h5>Key Insight: "A Blueprint for a Livable Future."</h5>
+                        <p>In a landscape fractured by environmental inequality, where can we find a safe harbor? Rather than a simple ranking, we mapped the intersection of air quality and social resilience to identify America's 'Respiratory Sanctuaries'. These are counties falling into the "Gold Quadrant" (Low Pollution + Low Vulnerability), such as Lincoln County, WY (Median AQI 10) and Hancock County, ME (Median AQI 37). By isolating these regions, we define a tangible benchmark for environmental health that every community deserves.</p>
+                    </div>
+                    <div class='tableauPlaceholder' id='viz1770515492394' style='position: relative'>
+                        <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;5&#47;1_rss.png' style='border: none' /></a></noscript>
+                        <object class='tableauViz' style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                            <param name='embed_code_version' value='3' /> 
+                            <param name='site_root' value='' />
+                            <param name='name' value='airreport&#47;5' />
+                            <param name='tabs' value='yes' /> 
+                            <param name='toolbar' value='yes' />
+                            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;5&#47;1.png' /> 
+                            <param name='animate_transition' value='yes' />
+                            <param name='display_static_image' value='yes' />
+                            <param name='display_spinner' value='yes' />
+                            <param name='display_overlay' value='yes' />
+                            <param name='display_count' value='yes' />
+                            <param name='language' value='en-US' />
+                        </object>
+                    </div>
+                    
+                    <div class="method-box">
+                        <h4>Methodology Note</h4>
+                        <p>Methodology: Regions are classified using a Bivariate Matrix, separating counties into quadrants based on Median AQI and Environmental Justice Index (EJI) percentiles. 'Sanctuaries' represent the top-performing quadrant.</p>
+                    </div>
+                </article>
+
+                <article id="card-distribution" class="data-card">
+                    <div class="card-header">
+                        <h3 class="card-title">2025 AQI Distribution by State</h3>
+                    </div>
+                    <div class="insight-box">
+                        <h5>Key Insight: Long-tail Distribution</h5>
+                        <p>The boxplot highlights a significant 'long-tail distribution' in U.S. air quality: while most counties maintain a tight interquartile range within healthy levels, Western states exhibit extensive whiskers and numerous outliers. This visualizes the high environmental volatility in these regions, where localized extreme events cause frequent, severe departures from the median.</p>
+                    </div>
+                    <div class='tableauPlaceholder' id='viz1770515643423' style='position: relative'>
+                        <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;8&#47;1_rss.png' style='border: none' /></a></noscript>
+                        <object class='tableauViz' style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                            <param name='embed_code_version' value='3' /> 
+                            <param name='site_root' value='' />
+                            <param name='name' value='airreport&#47;8' />
+                            <param name='tabs' value='yes' /> 
+                            <param name='toolbar' value='yes' />
+                            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;8&#47;1.png' /> 
+                            <param name='animate_transition' value='yes' />
+                            <param name='display_static_image' value='yes' />
+                            <param name='display_spinner' value='yes' />
+                            <param name='display_overlay' value='yes' />
+                            <param name='display_count' value='yes' />
+                            <param name='language' value='en-US' />
+                        </object>
+                    </div>
+                </article>
+            </section>
+
+            <div class="final-quote">
+                "Data is the evidence. Policy is the cure. Equity is the goal."
+            </div>
+            
+            <div class="addendum-text">
+                Counties were ranked using the Unhealthy Risk Index, enabling identification of the most at-risk regions based on combined pollution burden and environmental justice vulnerability. This ranking framework supports comparative analysis and prioritization of counties facing compounded environmental and health risks.
+            </div>
 
         </main>
     </div>
@@ -944,14 +973,12 @@
                 var vizElement = divElement.getElementsByTagName('object')[0];
                 vizElement.style.width = '100%';
                 
-                // 智能高度调整
                 if (divElement.offsetWidth > 800) {
                     vizElement.style.height = (divElement.offsetWidth * 0.65) + 'px';
                 } else {
                     vizElement.style.height = (divElement.offsetWidth * 0.85) + 'px';
                 }
                 
-                // 确保有最小高度
                 vizElement.style.minHeight = '500px'; 
             }
         }
@@ -966,7 +993,7 @@
             'viz1770511153978', 
             'viz1770511203453', 
             'viz1770511312112',
-            'viz1770521500387'  // [NEW] Ozone Driver ID
+            'viz1770521500387'  
         ];
         
         vizIds.forEach(initTableauViz);
