@@ -7,18 +7,18 @@
     <style>
         /* --- 0. 设计系统 (Design System) --- */
         :root {
-            /* 核心色盘：清新、健康、科技 */
-            --primary-color: #2E5C55;      /* 深青色：用于标题，稳重 */
-            --accent-color: #4DB6AC;       /* 浅青色：用于强调 */
-            --bg-body: #F4F7F6;            /* 极淡灰绿背景：护眼 */
-            --bg-card: #FFFFFF;            /* 纯白卡片背景 */
-            --text-main: #2C3E50;          /* 主文字色 */
-            --text-secondary: #546E7A;     /* 次要文字色，稍微加深一点提升阅读感 */
+            /* 核心色盘 */
+            --primary-color: #2E5C55;      
+            --accent-color: #4DB6AC;       
+            --bg-body: #F4F7F6;            
+            --bg-card: #FFFFFF;            
+            --text-main: #2C3E50;          
+            --text-secondary: #546E7A;     
             
             /* 间距与圆角 */
             --border-radius: 16px;
             
-            /* 阴影：轻盈的悬浮感 */
+            /* 阴影 */
             --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
         }
@@ -101,7 +101,6 @@
             font-size: 1.1rem;
             color: var(--text-secondary);
             margin-bottom: 30px;
-            text-align: center;
             max-width: 650px;
             margin-left: auto;
             margin-right: auto;
@@ -123,6 +122,7 @@
             padding: 30px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             border: 1px solid rgba(0,0,0,0.02);
+            overflow: hidden;
         }
 
         .data-card:hover {
@@ -143,50 +143,50 @@
             margin: 0;
         }
 
-        /* --- [新元素样式] 数据集介绍卡片专用 --- */
+        /* --- [专用样式] 数据集介绍卡片 --- */
         .card-body-split {
             display: flex;
-            align-items: center; /* 垂直居中 */
-            gap: 40px; /* 左右间距 */
+            align-items: flex-start; 
+            gap: 40px; 
         }
 
         .split-text {
-            flex: 3; /* 文字区域占比 3/5 */
+            flex: 1; 
+            min-width: 300px; 
         }
 
-        /* 优化列表样式 */
         .dataset-list {
             margin: 0;
             padding-left: 20px;
             color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         .dataset-list li {
-            margin-bottom: 12px;
-            position: relative;
+            margin-bottom: 10px;
         }
         
-        /* 自定义列表项前面的点，用主题色 */
         .dataset-list li::marker {
             color: var(--accent-color);
         }
 
         .split-image {
-            flex: 2; /* 图片区域占比 2/5 */
+            flex: 1; 
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .split-image img {
-            max-width: 100%;
-            height: auto;
+            width: 100%;       
+            max-width: 500px;  
+            height: auto;      
             border-radius: 12px;
-            /* 给图片加一点点通透的质感 */
             box-shadow: 0 4px 15px rgba(77, 182, 172, 0.15);
+            object-fit: cover;
         }
 
-        /* --- Tableau 容器修正 --- */
+        /* --- Tableau 容器 --- */
         .tableauPlaceholder {
             width: 100%;
             border-radius: 8px;
@@ -204,18 +204,14 @@
         }
 
         /* --- 响应式适配 --- */
-        @media (max-width: 768px) {
-            .header-content { padding: 15px 20px; }
-            .hero-section h1 { font-size: 1.8rem; }
-            .data-card { padding: 20px; }
-            
-            /* [新元素响应式] 移动端改为上下堆叠 */
+        @media (max-width: 900px) { 
             .card-body-split {
-                flex-direction: column;
-                gap: 25px;
+                flex-direction: column-reverse;
+                gap: 20px;
             }
-            .split-image img {
-                max-width: 80%; /* 移动端图片稍微缩小点，别太满 */
+            .split-text, .split-image {
+                flex: auto;
+                width: 100%;
             }
         }
     </style>
@@ -312,27 +308,189 @@
             </div>
         </article>
 
+        <article class="data-card">
+            <div class="card-header">
+                <h3 class="card-title">Comprehensive Data Visualization</h3>
+            </div>
+            <div class='tableauPlaceholder' id='viz1770504457892' style='position: relative'>
+                <noscript>
+                    <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W7&#47;W77CGS4QW&#47;1_rss.png' style='border: none' /></a>
+                </noscript>
+                <object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                    <param name='embed_code_version' value='3' /> 
+                    <param name='path' value='shared&#47;W77CGS4QW' /> 
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W7&#47;W77CGS4QW&#47;1.png' /> 
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='zh-CN' />
+                </object>
+            </div>
+        </article>
+
+        <article class="data-card">
+            <div class="card-header">
+                <h3 class="card-title">Advanced Trends & Insights</h3>
+            </div>
+            <div class='tableauPlaceholder' id='viz1770504480900' style='position: relative'>
+                <noscript>
+                    <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;JD&#47;JD2BCT4QF&#47;1_rss.png' style='border: none' /></a>
+                </noscript>
+                <object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                    <param name='embed_code_version' value='3' /> 
+                    <param name='path' value='shared&#47;JD2BCT4QF' /> 
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;JD&#47;JD2BCT4QF&#47;1.png' /> 
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='zh-CN' />
+                </object>
+            </div>
+        </article>
+
+        <article class="data-card">
+            <div class="card-header">
+                <h3 class="card-title">Health Impacts: Asthma & Environmental Vulnerability</h3>
+            </div>
+            <div class='tableauPlaceholder' id='viz1770511153978' style='position: relative'>
+                <noscript>
+                    <a href='#'><img alt='Asthma Prevalence Increases with Environmental Justice Vulnerability, Especially Under High Pollution ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauTab_17705075189980&#47;AsthmaPrevalenceIncreaseswithEnvironmentalJusticeVulnerabilityEspeciallyUnderHighPollution&#47;1_rss.png' style='border: none' /></a>
+                </noscript>
+                <object class='tableauViz'  style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                    <param name='embed_code_version' value='3' /> 
+                    <param name='site_root' value='' />
+                    <param name='name' value='TableauTab_17705075189980&#47;AsthmaPrevalenceIncreaseswithEnvironmentalJusticeVulnerabilityEspeciallyUnderHighPollution' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauTab_17705075189980&#47;AsthmaPrevalenceIncreaseswithEnvironmentalJusticeVulnerabilityEspeciallyUnderHighPollution&#47;1.png' /> 
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='zh-CN' />
+                </object>
+            </div>
+        </article>
+
+        <article class="data-card">
+            <div class="card-header">
+                <h3 class="card-title">Environmental Justice Analysis: Pollution & County Composition</h3>
+            </div>
+            <div class='tableauPlaceholder' id='viz1770511203453' style='position: relative'>
+                <noscript>
+                    <a href='#'><img alt='Fig2_EJ_Composition_by_Pollution ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Hi&#47;HighEnvironmentalJusticeCountiesAreDisproportionatelyRepresentedAmongHigh-PollutionCounties&#47;Fig2_EJ_Composition_by_Pollution&#47;1_rss.png' style='border: none' /></a>
+                </noscript>
+                <object class='tableauViz'  style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                    <param name='embed_code_version' value='3' /> 
+                    <param name='site_root' value='' />
+                    <param name='name' value='HighEnvironmentalJusticeCountiesAreDisproportionatelyRepresentedAmongHigh-PollutionCounties&#47;Fig2_EJ_Composition_by_Pollution' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Hi&#47;HighEnvironmentalJusticeCountiesAreDisproportionatelyRepresentedAmongHigh-PollutionCounties&#47;Fig2_EJ_Composition_by_Pollution&#47;1.png' /> 
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='zh-CN' />
+                </object>
+            </div>
+        </article>
+
+        <article class="data-card">
+            <div class="card-header">
+                <h3 class="card-title">Key Drivers of PM2.5 Pollution</h3>
+            </div>
+            <div class='tableauPlaceholder' id='viz1770511312112' style='position: relative'>
+                <noscript>
+                    <a href='#'><img alt='Fig3_Driver_PM25 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Fig3_Driver_PM25&#47;Fig3_Driver_PM25&#47;1_rss.png' style='border: none' /></a>
+                </noscript>
+                <object class='tableauViz'  style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                    <param name='embed_code_version' value='3' /> 
+                    <param name='site_root' value='' />
+                    <param name='name' value='Fig3_Driver_PM25&#47;Fig3_Driver_PM25' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Fig3_Driver_PM25&#47;Fig3_Driver_PM25&#47;1.png' /> 
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='zh-CN' />
+                </object>
+            </div>
+        </article>
+
     </main>
 
     <script type='text/javascript'>
-        // 初始化第一个图表
+        // 初始化图表 1
         var divElement1 = document.getElementById('viz1770504390091');
         var vizElement1 = divElement1.getElementsByTagName('object')[0];
         vizElement1.style.width='100%';
         vizElement1.style.height=(divElement1.offsetWidth*0.75)+'px';
         vizElement1.style.minHeight='500px';
 
-        // 初始化第二个图表
+        // 初始化图表 2
         var divElement2 = document.getElementById('viz1770504438446');
         var vizElement2 = divElement2.getElementsByTagName('object')[0];
         vizElement2.style.width='100%';
         vizElement2.style.height=(divElement2.offsetWidth*0.75)+'px';
         vizElement2.style.minHeight='500px';
+
+        // 初始化图表 3
+        var divElement3 = document.getElementById('viz1770504457892');
+        var vizElement3 = divElement3.getElementsByTagName('object')[0];
+        vizElement3.style.width='100%';
+        vizElement3.style.height=(divElement3.offsetWidth*0.75)+'px';
+        vizElement3.style.minHeight='500px';
+
+        // 初始化图表 4
+        var divElement4 = document.getElementById('viz1770504480900');
+        var vizElement4 = divElement4.getElementsByTagName('object')[0];
+        vizElement4.style.width='100%';
+        vizElement4.style.height=(divElement4.offsetWidth*0.75)+'px';
+        vizElement4.style.minHeight='500px';
+
+        // 初始化图表 5
+        var divElement5 = document.getElementById('viz1770511153978');
+        var vizElement5 = divElement5.getElementsByTagName('object')[0];
+        vizElement5.style.width='100%';
+        vizElement5.style.height=(divElement5.offsetWidth*0.75)+'px';
+        vizElement5.style.minHeight='500px';
+
+        // 初始化图表 6
+        var divElement6 = document.getElementById('viz1770511203453');
+        var vizElement6 = divElement6.getElementsByTagName('object')[0];
+        vizElement6.style.width='100%';
+        vizElement6.style.height=(divElement6.offsetWidth*0.75)+'px';
+        vizElement6.style.minHeight='500px';
+
+        // [新增] 初始化图表 7
+        var divElement7 = document.getElementById('viz1770511312112');
+        var vizElement7 = divElement7.getElementsByTagName('object')[0];
+        vizElement7.style.width='100%';
+        vizElement7.style.height=(divElement7.offsetWidth*0.75)+'px';
+        vizElement7.style.minHeight='500px';
         
         // 加载 Tableau API
         var scriptElement = document.createElement('script');
         scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-        vizElement2.parentNode.insertBefore(scriptElement, vizElement2);
+        // 将脚本插入到最后一个图表对象之前
+        vizElement7.parentNode.insertBefore(scriptElement, vizElement7);
     </script>
 
     <footer>
