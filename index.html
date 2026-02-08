@@ -66,7 +66,6 @@
         .header-content {
             max-width: 1400px; 
             margin: 0 auto;
-            /* 增加垂直内边距，适应大 Logo */
             padding: 20px 30px; 
             display: flex;
             justify-content: space-between;
@@ -74,7 +73,6 @@
         }
 
         .site-title {
-            /* 放大字号 */
             font-size: 1.8rem; 
             font-weight: 800;
             color: var(--text-main); 
@@ -99,7 +97,6 @@
         }
 
         .header-logo-container img {
-            /* Logo 尺寸放大 */
             height: 60px; 
             width: auto;
             display: block;
@@ -538,10 +535,10 @@
                 </div>
 
                 <div class="nav-group">
-                    <a href="#group-analysis" class="nav-link main">Risk Assessment</a>
+                    <a href="#group-analysis" class="nav-link main">Pollutant Assessment</a>
                     <div class="nav-sub-container">
-                        <a href="#card-pollutants" class="nav-link sub">Pollutant Analysis</a>
-                        <a href="#card-comprehensive" class="nav-link sub">Comprehensive Viz</a>
+                        <a href="#card-pollutants" class="nav-link sub">Pollutant Composition</a>
+                        <a href="#card-comprehensive" class="nav-link sub">Pollutant by Area</a>
                     </div>
                 </div>
 
@@ -668,7 +665,7 @@
             <section id="group-analysis" class="content-group">
                 <article id="card-pollutants" class="data-card">
                     <div class="card-header">
-                        <h3 class="card-title">Pollutant Risk Assessment</h3>
+                        <h3 class="card-title">Pollutant Composition Assessment</h3>
                     </div>
                     <div class="insight-box">
                         <h5>Key Insight: Dominant Pollutants</h5>
@@ -696,12 +693,28 @@
 
                 <article id="card-comprehensive" class="data-card">
                     <div class="card-header">
-                        <h3 class="card-title">Comprehensive Data Visualization</h3>
+                        <h3 class="card-title">Regional Pollutant Fingerprints</h3>
                     </div>
-                    <div class='tableauPlaceholder' id='viz1770504457892' style='position: relative'>
-                        <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W7&#47;W77CGS4QW&#47;1_rss.png' style='border: none' /></a></noscript>
+                    <div class="insight-box">
+                        <h5>Key Insight: TODO </h5>
+                        <p>The Western U.S. exhibits a stark pollutant divide: PM2.5 dominates the Northwest, Ozone and PM10 are the primary drivers in the Southwest (California). While the Central and Eastern U.S. remain relatively uniform, NO2 emerges as a rare primary pollutant, localized only in specific areas such as Carbon County, WY, and select counties in Texas.</p>
+                    </div>
+                    <div class='tableauPlaceholder' id='viz1770512336534' style='position: relative'>
+                        <noscript><a href='#'><img alt='The Dominant Pollutant Map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Th&#47;TheDominantPollutantMap&#47;TheDominantPollutantMap&#47;1_rss.png' style='border: none' /></a></noscript>
                         <object class='tableauViz' style='display:none;'>
-                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;W77CGS4QW' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W7&#47;W77CGS4QW&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='zh-CN' />
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                            <param name='embed_code_version' value='3' /> 
+                            <param name='site_root' value='' />
+                            <param name='name' value='TheDominantPollutantMap&#47;TheDominantPollutantMap' />
+                            <param name='tabs' value='no' />
+                            <param name='toolbar' value='yes' />
+                            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Th&#47;TheDominantPollutantMap&#47;TheDominantPollutantMap&#47;1.png' /> 
+                            <param name='animate_transition' value='yes' />
+                            <param name='display_static_image' value='yes' />
+                            <param name='display_spinner' value='yes' />
+                            <param name='display_overlay' value='yes' />
+                            <param name='display_count' value='yes' />
+                            <param name='language' value='en-US' />
                         </object>
                     </div>
                 </article>
@@ -890,8 +903,8 @@
         var vizIds = [
             'viz1770512051199', 
             'viz1770516598444', 
-            'viz1770515432060', // [REPLACED] New ID for Pollutant Analysis
-            'viz1770504457892', 
+            'viz1770515432060', 
+            'viz1770512336534', // [REPLACED] Updated Fourth Tableau
             'viz1770512766991', 
             'viz1770511153978', 
             'viz1770511203453', 
