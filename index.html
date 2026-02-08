@@ -789,13 +789,13 @@
                         <span class="expert-badge">Crucial Finding</span>
                     </div>
                     <div class="card-text-block">
-                        <p>This part examines environmental justice in U.S. air quality by integrating county-level AQI data with the EPA Environmental Justice (EJ) Index. We construct an Unhealthy Risk Index based on pollutant-specific unhealthy day counts, emphasizing PM2.5 and Ozone, and assess community vulnerability using EJ percentiles. Counties are compared using a quantile-based framework, focusing on the top and bottom 20% of pollution and EJ risk.</p>
-                        <p>Results show that high-pollution counties are disproportionately concentrated in high EJ vulnerability groups, and that counties facing both high pollution and high EJ risk exhibit significantly higher asthma prevalence, indicating compounding health impacts. Pollutant decomposition identifies PM2.5 and Ozone as the primary drivers of pollution burden, with clear regional clustering of high-risk counties.</p>
+                        <p>This part examines environmental justice in U.S. air quality by integrating county-level AQI data with the EPA Environmental Justice (EJ) Index. We construct an <strong>Unhealthy Risk Index</strong> based on pollutant-specific unhealthy day counts, emphasizing PM2.5 and Ozone, and assess community vulnerability using EJ percentiles. Counties are compared using a <strong>quantile-based framework</strong>, focusing on the top and bottom 20% of pollution and EJ risk.</p>
+                        <p>Results show that <strong>high-pollution counties are disproportionately concentrated in high EJ vulnerability groups</strong>, and that counties facing both high pollution and high EJ risk exhibit <strong>significantly higher asthma prevalence</strong>, indicating compounding health impacts. Pollutant decomposition identifies <strong>PM2.5</strong> and Ozone as the primary drivers of pollution burden, with clear regional clustering of high-risk counties.</p>
                     </div>
                     
                     <div class="method-box">
                         <h4>Methodology Note</h4>
-                        <p>This analysis applies feature aggregation, percentile stratification, and subgroup comparison to produce interpretable, policy-relevant insights without relying on predictive modeling.</p>
+                        <p>This analysis applies <strong>feature aggregation, percentile stratification, and subgroup comparison</strong> to produce interpretable, policy-relevant insights without relying on predictive modeling.</p>
                     </div>
                 </article>
 
@@ -804,8 +804,7 @@
                         <h3 class="card-title">Asthma Prevalence & Vulnerability</h3>
                     </div>
                     <div class="insight-box">
-                        <h5>Key Insight: The "Double Burden"</h5>
-                        <p>Data indicates that vulnerable communities (High EJ) suffer higher asthma rates even at moderate pollution levels, but the gap widens drastically in high pollution areas.</p>
+                        <p>Average county-level asthma prevalence by Environmental Justice (EJ) group under different pollution risk levels, showing amplified health impacts in high EJ counties under high pollution conditions.</p>
                     </div>
                     <div class='tableauPlaceholder' id='viz1770511153978' style='position: relative'>
                         <noscript><a href='#'><img alt='Asthma Prevalence Increases with Environmental Justice Vulnerability, Especially Under High Pollution ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauTab_17705075189980&#47;AsthmaPrevalenceIncreaseswithEnvironmentalJusticeVulnerabilityEspeciallyUnderHighPollution&#47;1_rss.png' style='border: none' /></a></noscript>
@@ -819,6 +818,9 @@
                     <div class="card-header">
                         <h3 class="card-title">EJ Composition in High Pollution Areas</h3>
                     </div>
+                    <div class="insight-box">
+                        <p>Composition of EJ risk groups within high- and medium-pollution counties, showing the overrepresentation of high-EJ counties and the dominant contribution of PM2.5 and Ozone exposure.</p>
+                    </div>
                     <div class='tableauPlaceholder' id='viz1770511203453' style='position: relative'>
                         <noscript><a href='#'><img alt='Fig2_EJ_Composition_by_Pollution ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Hi&#47;HighEnvironmentalJusticeCountiesAreDisproportionatelyRepresentedAmongHigh-PollutionCounties&#47;Fig2_EJ_Composition_by_Pollution&#47;1_rss.png' style='border: none' /></a></noscript>
                         <object class='tableauViz'  style='display:none;'>
@@ -831,6 +833,9 @@
                     <div class="card-header">
                         <h3 class="card-title">Geographic Distribution of Inequities: PM2.5 Driver</h3>
                     </div>
+                    <div class="insight-box">
+                        <p>Geographic distribution of high-risk counties reveals regional clustering of combined pollution and environmental justice burden, indicating systematic and place-based exposure inequities.</p>
+                    </div>
                     <div class='tableauPlaceholder' id='viz1770511312112' style='position: relative'>
                         <noscript><a href='#'><img alt='Fig3_Driver_PM25 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Fig3_Driver_PM25&#47;Fig3_Driver_PM25&#47;1_rss.png' style='border: none' /></a></noscript>
                         <object class='tableauViz'  style='display:none;'>
@@ -842,6 +847,9 @@
                 <article id="card-geo-ozone" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">Geographic Distribution of Inequities: Ozone Driver</h3>
+                    </div>
+                    <div class="insight-box">
+                        <p>Ozone exposure contributes substantially to unhealthy risk across EJ strata, reinforcing pollution-driven inequities. High EJ vulnerability amplifies health risk even when population size is comparatively smaller.</p>
                     </div>
                     <div class='tableauPlaceholder' id='viz1770521500387' style='position: relative'>
                         <noscript><a href='#'><img alt='Fig3_Driver_Ozone ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Fig3_Driver_PM25&#47;Fig3_Driver_Ozone&#47;1_rss.png' style='border: none' /></a></noscript>
@@ -865,7 +873,7 @@
 
                 <article id="card-conclusion" class="data-card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Evidence & Final Conclusion</h3>
+                        <h3 class="card-title">Data Evidence & Conclusion</h3>
                     </div>
                     
                     <p style="margin-bottom: 20px; color: var(--text-secondary);"><strong>Summary Table: Average Asthma Prevalence by Risk Group</strong></p>
@@ -912,15 +920,15 @@
 
                     <div class="conclusion-block">
                         <h4 style="color: var(--tableau-green); display:flex; align-items:center; gap:10px;">
-                            <span>🏁</span> Final Conclusion
+                            <span>🏁</span> Conclusion
                         </h4>
                         <p class="card-text-block">
-                            Countries with higher environmental justice vulnerability experience disproportionately higher asthma prevalence, even at similar levels of air pollution. This disparity is further amplified under high pollution conditions. These patterns indicate that pollution-related health risks are shaped not only by exposure levels, but also by underlying social and environmental vulnerabilities.
+                            Counties with higher environmental justice vulnerability experience higher asthma prevalence even at similar pollution levels, with disparities amplified under high pollution conditions. This suggests that pollution-related health risks are shaped by underlying social and environmental vulnerability, not exposure alone. Overall, the findings highlight the need for equity-centered, place-based environmental and public health interventions.
                         </p>
                     </div>
 
                     <div class="source-citation">
-                        <strong>Source:</strong> EJI Data Source: Centers for Disease Control and Prevention (CDC) & Agency for Toxic Substances Disease Registry. [2024] Environmental Justice Index. Accessed [02/07/2025].
+                        <strong>Source:</strong> Centers for Disease Control and Prevention and Agency for Toxic Substances Disease Registry. [2024] Environmental Justice Index. Accessed [02/07/2025]. https://atsdr.cdc.gov/place-health/php/eji/eji-data-download.html
                     </div>
                 </article>
 
