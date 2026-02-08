@@ -13,10 +13,9 @@
             --bg-body: #F4F7F6;            /* 极淡灰绿背景：护眼 */
             --bg-card: #FFFFFF;            /* 纯白卡片背景 */
             --text-main: #2C3E50;          /* 主文字色 */
-            --text-secondary: #607D8B;     /* 次要文字色 */
+            --text-secondary: #546E7A;     /* 次要文字色，稍微加深一点提升阅读感 */
             
             /* 间距与圆角 */
-            --spacing-unit: 20px;
             --border-radius: 16px;
             
             /* 阴影：轻盈的悬浮感 */
@@ -34,14 +33,14 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased; /* 字体抗锯齿，更清晰 */
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 2. 顶部导航：极简玻璃态 --- */
+        /* --- 2. 顶部导航 --- */
         .site-header {
             background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px); /* 毛玻璃效果 */
-            position: sticky; /* 吸顶效果 */
+            backdrop-filter: blur(10px);
+            position: sticky;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -67,7 +66,6 @@
             gap: 10px;
         }
         
-        /* 这里的伪元素可以放一个小图标，增强品牌感 */
         .site-title::before {
             content: "";
             display: block;
@@ -78,12 +76,12 @@
         }
 
         .header-logo-container img {
-            height: 40px; /* Logo 稍微缩小，显得更精致 */
+            height: 40px;
             width: auto;
             display: block;
         }
 
-        /* --- 3. Hero 区域：文字排版 --- */
+        /* --- 3. Hero 区域 --- */
         .hero-section {
             max-width: 800px;
             margin: 60px auto 40px auto;
@@ -103,53 +101,96 @@
             font-size: 1.1rem;
             color: var(--text-secondary);
             margin-bottom: 30px;
-            text-align: center; /* 居中对齐比两端对齐更适合现代网页 */
+            text-align: center;
             max-width: 650px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* --- 4. 仪表盘主体：卡片式布局 --- */
+        /* --- 4. 仪表盘主体与卡片通用样式 --- */
         .dashboard-container {
             max-width: 1200px;
             margin: 0 auto 80px auto;
             padding: 0 20px;
             display: grid;
-            gap: 40px; /* 卡片之间的间距 */
+            gap: 40px;
         }
 
-        /* 卡片通用样式：为了后续加新元素，把每个模块做成卡片 */
         .data-card {
             background: var(--bg-card);
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
             padding: 30px;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             border: 1px solid rgba(0,0,0,0.02);
         }
 
         .data-card:hover {
-            transform: translateY(-2px); /* 鼠标悬停微动，增加交互感 */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
         }
 
         .card-header {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
         }
 
         .card-title {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 600;
             color: var(--primary-color);
             margin: 0;
         }
 
-        /* Tableau 容器修正 */
+        /* --- [新元素样式] 数据集介绍卡片专用 --- */
+        .card-body-split {
+            display: flex;
+            align-items: center; /* 垂直居中 */
+            gap: 40px; /* 左右间距 */
+        }
+
+        .split-text {
+            flex: 3; /* 文字区域占比 3/5 */
+        }
+
+        /* 优化列表样式 */
+        .dataset-list {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-secondary);
+        }
+
+        .dataset-list li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+        
+        /* 自定义列表项前面的点，用主题色 */
+        .dataset-list li::marker {
+            color: var(--accent-color);
+        }
+
+        .split-image {
+            flex: 2; /* 图片区域占比 2/5 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .split-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            /* 给图片加一点点通透的质感 */
+            box-shadow: 0 4px 15px rgba(77, 182, 172, 0.15);
+        }
+
+        /* --- Tableau 容器修正 --- */
         .tableauPlaceholder {
             width: 100%;
             border-radius: 8px;
-            overflow: hidden; /* 防止圆角溢出 */
+            overflow: hidden;
         }
 
         /* --- 5. 页脚 --- */
@@ -164,14 +205,17 @@
 
         /* --- 响应式适配 --- */
         @media (max-width: 768px) {
-            .header-content {
-                padding: 15px 20px;
+            .header-content { padding: 15px 20px; }
+            .hero-section h1 { font-size: 1.8rem; }
+            .data-card { padding: 20px; }
+            
+            /* [新元素响应式] 移动端改为上下堆叠 */
+            .card-body-split {
+                flex-direction: column;
+                gap: 25px;
             }
-            .hero-section h1 {
-                font-size: 1.8rem;
-            }
-            .data-card {
-                padding: 15px; /* 移动端减小内边距 */
+            .split-image img {
+                max-width: 80%; /* 移动端图片稍微缩小点，别太满 */
             }
         }
     </style>
@@ -191,13 +235,33 @@
         <h1>Unveiling the Invisible: <br>US Air Quality 2025</h1>
         <p>
             An in-depth analysis of respiratory health and environmental future. 
-            From geographical overviews to livability risk assessments, we use data to reveal 
-            the true picture of PM2.5 and Ozone levels across the nation.
+            We use data to reveal the true picture of PM2.5 and Ozone levels across the nation.
         </p>
     </section>
 
     <main class="dashboard-container">
         
+        <article class="data-card">
+            <div class="card-header">
+                <h3 class="card-title">Dataset Overview: The Foundation of Our Analysis</h3>
+            </div>
+            <div class="card-body-split">
+                <div class="split-text">
+                    <ul class="dataset-list">
+                        <li><strong>Scope:</strong> 978 county-level records for 2025, each representing a unique State–County combination.</li>
+                        <li><strong>Coverage:</strong> Across 54 state-level entities, including U.S. states and the District of Columbia.</li>
+                        <li><strong>Granularity:</strong> 763 unique county names (reflecting repeated names across states).</li>
+                        <li><strong>Type:</strong> Single-year cross-sectional dataset, optimized for spatial comparison.</li>
+                        <li><strong>Metrics Included:</strong> Median AQI, Max AQI, air quality category days, and pollutant-specific indicators (Ozone, PM2.5, NO₂, CO, PM10).</li>
+                        <li><strong>Note:</strong> Represents a partial monitoring network with uneven coverage, not a complete census of all U.S. counties.</li>
+                    </ul>
+                </div>
+                <div class="split-image">
+                    <img src="AQI Dataset.png" alt="AQI Data Flow Map Illustration">
+                </div>
+            </div>
+        </article>
+
         <article class="data-card">
             <div class="card-header">
                 <h3 class="card-title">Geographical Overview & Status</h3>
@@ -255,7 +319,6 @@
         var divElement1 = document.getElementById('viz1770504390091');
         var vizElement1 = divElement1.getElementsByTagName('object')[0];
         vizElement1.style.width='100%';
-        // 自动计算高度，但设置最小高度防止塌陷
         vizElement1.style.height=(divElement1.offsetWidth*0.75)+'px';
         vizElement1.style.minHeight='500px';
 
