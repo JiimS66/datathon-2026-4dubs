@@ -26,6 +26,11 @@
         /* --- 1. 全局样式重置 --- */
         * { box-sizing: border-box; }
         
+        html {
+            scroll-behavior: smooth; /* 启用平滑滚动 */
+            scroll-padding-top: 100px; /* 点击跳转时，留出顶部导航栏的高度 */
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -48,7 +53,7 @@
         }
 
         .header-content {
-            max-width: 1200px;
+            max-width: 1400px; 
             margin: 0 auto;
             padding: 15px 30px;
             display: flex;
@@ -106,15 +111,62 @@
             margin-right: auto;
         }
 
-        /* --- 4. 仪表盘主体与卡片通用样式 --- */
-        .dashboard-container {
-            max-width: 1200px;
+        /* --- 4. 核心布局 (Layout Wrapper) --- */
+        .layout-wrapper {
+            max-width: 1400px;
             margin: 0 auto 80px auto;
-            padding: 0 20px;
-            display: grid;
+            padding: 0 30px;
+            display: flex;
             gap: 40px;
+            position: relative;
         }
 
+        /* --- 左侧边栏 (Sidebar) --- */
+        .sidebar-nav {
+            width: 260px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent; 
+        }
+
+        .nav-link:hover {
+            background-color: rgba(77, 182, 172, 0.08); 
+            color: var(--primary-color);
+        }
+
+        .nav-link.active {
+            background-color: rgba(77, 182, 172, 0.15);
+            color: var(--primary-color);
+            border-left-color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* --- 右侧内容区域 --- */
+        .dashboard-content {
+            flex: 1;
+            display: grid;
+            gap: 40px;
+            min-width: 0; 
+        }
+
+        /* --- 卡片样式 --- */
         .data-card {
             background: var(--bg-card);
             border-radius: var(--border-radius);
@@ -123,6 +175,7 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             border: 1px solid rgba(0,0,0,0.02);
             overflow: hidden;
+            scroll-margin-top: 100px;
         }
 
         .data-card:hover {
@@ -143,48 +196,25 @@
             margin: 0;
         }
 
-        /* --- [专用样式] 数据集介绍卡片 --- */
+        /* --- 数据集介绍卡片专用 --- */
         .card-body-split {
             display: flex;
             align-items: flex-start; 
             gap: 40px; 
         }
 
-        .split-text {
-            flex: 1; 
-            min-width: 300px; 
-        }
-
-        .dataset-list {
-            margin: 0;
-            padding-left: 20px;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .dataset-list li {
-            margin-bottom: 10px;
-        }
-        
-        .dataset-list li::marker {
-            color: var(--accent-color);
-        }
-
-        .split-image {
-            flex: 1; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
+        .split-text { flex: 1; min-width: 300px; }
+        .split-image { flex: 1; display: flex; justify-content: center; align-items: center; }
         .split-image img {
-            width: 100%;       
-            max-width: 500px;  
-            height: auto;      
+            width: 100%; max-width: 500px; height: auto;      
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(77, 182, 172, 0.15);
             object-fit: cover;
         }
+        
+        .dataset-list { margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 0.95rem; }
+        .dataset-list li { margin-bottom: 10px; }
+        .dataset-list li::marker { color: var(--accent-color); }
 
         /* --- Tableau 容器 --- */
         .tableauPlaceholder {
@@ -204,15 +234,18 @@
         }
 
         /* --- 响应式适配 --- */
-        @media (max-width: 900px) { 
-            .card-body-split {
-                flex-direction: column-reverse;
-                gap: 20px;
+        @media (max-width: 1024px) { 
+            .layout-wrapper {
+                flex-direction: column; 
             }
-            .split-text, .split-image {
-                flex: auto;
+            .sidebar-nav {
                 width: 100%;
+                position: relative; 
+                top: 0;
+                display: none; /* 移动端暂时隐藏侧边栏 */
             }
+            .header-content { padding: 15px 20px; }
+            .card-body-split { flex-direction: column-reverse; gap: 20px; }
         }
     </style>
 </head>
@@ -235,262 +268,198 @@
         </p>
     </section>
 
-    <main class="dashboard-container">
+    <div class="layout-wrapper">
         
-        <article class="data-card">
-            <div class="card-header">
-                <h3 class="card-title">Dataset Overview: The Foundation of Our Analysis</h3>
-            </div>
-            <div class="card-body-split">
-                <div class="split-text">
-                    <ul class="dataset-list">
-                        <li><strong>Scope:</strong> 978 county-level records for 2025, each representing a unique State–County combination.</li>
-                        <li><strong>Coverage:</strong> Across 54 state-level entities, including U.S. states and the District of Columbia.</li>
-                        <li><strong>Granularity:</strong> 763 unique county names (reflecting repeated names across states).</li>
-                        <li><strong>Type:</strong> Single-year cross-sectional dataset, optimized for spatial comparison.</li>
-                        <li><strong>Metrics Included:</strong> Median AQI, Max AQI, air quality category days, and pollutant-specific indicators (Ozone, PM2.5, NO₂, CO, PM10).</li>
-                        <li><strong>Note:</strong> Represents a partial monitoring network with uneven coverage, not a complete census of all U.S. counties.</li>
-                    </ul>
+        <aside class="sidebar-nav">
+            <nav id="navbar">
+                <a href="#section-dataset" class="nav-link">Dataset Overview</a>
+                <a href="#section-geo" class="nav-link">Geographical Overview</a>
+                <a href="#section-advanced" class="nav-link">Advanced Trends</a> <a href="#section-pollutant" class="nav-link">Pollutant Analysis</a>
+                <a href="#section-comprehensive" class="nav-link">Comprehensive Viz</a>
+                <a href="#section-asthma" class="nav-link">Health: Asthma & EJ</a>
+                <a href="#section-ej-comp" class="nav-link">EJ County Composition</a>
+                <a href="#section-drivers" class="nav-link">PM2.5 Key Drivers</a>
+            </nav>
+        </aside>
+
+        <main class="dashboard-content">
+            
+            <article class="data-card" id="section-dataset">
+                <div class="card-header">
+                    <h3 class="card-title">Dataset Overview</h3>
                 </div>
-                <div class="split-image">
-                    <img src="AQI Dataset.png" alt="AQI Data Flow Map Illustration">
+                <div class="card-body-split">
+                    <div class="split-text">
+                        <ul class="dataset-list">
+                            <li><strong>Scope:</strong> 978 county-level records for 2025.</li>
+                            <li><strong>Coverage:</strong> Across 54 state-level entities.</li>
+                            <li><strong>Granularity:</strong> 763 unique county names.</li>
+                            <li><strong>Type:</strong> Single-year cross-sectional dataset.</li>
+                            <li><strong>Metrics:</strong> Median AQI, Max AQI, Pollutant indicators.</li>
+                            <li><strong>Note:</strong> Partial monitoring network coverage.</li>
+                        </ul>
+                    </div>
+                    <div class="split-image">
+                        <img src="AQI Dataset.png" alt="AQI Data Flow Map">
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
 
-        <article class="data-card">
-            <div class="card-header">
-                <h3 class="card-title">Geographical Overview & Status</h3>
-            </div>
-            <div class='tableauPlaceholder' id='viz1770504390091' style='position: relative'>
-                <noscript>
-                    <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;1&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz' style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                    <param name='embed_code_version' value='3' /> 
-                    <param name='site_root' value='' />
-                    <param name='name' value='airreport&#47;1' />
-                    <param name='tabs' value='yes' />
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;1&#47;1.png' /> 
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='language' value='en-US' />
-                </object>
-            </div>
-        </article>
+            <article class="data-card" id="section-geo">
+                <div class="card-header">
+                    <h3 class="card-title">Geographical Overview & Status</h3>
+                </div>
+                <div class='tableauPlaceholder' id='viz1770512051199' style='position: relative'>
+                    <noscript><a href='#'><img alt='US Air Quality Map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ma&#47;map1_17705120367170&#47;USAirQualityMap&#47;1_rss.png' style='border: none' /></a></noscript>
+                    <object class='tableauViz' style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                        <param name='embed_code_version' value='3' /> 
+                        <param name='site_root' value='' />
+                        <param name='name' value='map1_17705120367170&#47;USAirQualityMap' />
+                        <param name='tabs' value='no' />
+                        <param name='toolbar' value='yes' />
+                        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ma&#47;map1_17705120367170&#47;USAirQualityMap&#47;1.png' /> 
+                        <param name='animate_transition' value='yes' />
+                        <param name='display_static_image' value='yes' />
+                        <param name='display_spinner' value='yes' />
+                        <param name='display_overlay' value='yes' />
+                        <param name='display_count' value='yes' />
+                        <param name='language' value='en-US' />
+                    </object>
+                </div>
+            </article>
 
-        <article class="data-card">
-            <div class="card-header">
-                <h3 class="card-title">Pollutant Analysis & Risk Assessment</h3>
-            </div>
-            <div class='tableauPlaceholder' id='viz1770504438446' style='position: relative'>
-                <noscript>
-                    <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;5Z&#47;5ZBGB5Z3Y&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz' style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                    <param name='embed_code_version' value='3' /> 
-                    <param name='path' value='shared&#47;5ZBGB5Z3Y' /> 
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;5Z&#47;5ZBGB5Z3Y&#47;1.png' /> 
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='language' value='en-US' />
-                </object>
-            </div>
-        </article>
+            <article class="data-card" id="section-advanced">
+                <div class="card-header">
+                    <h3 class="card-title">Advanced Trends & Insights</h3>
+                </div>
+                <div class='tableauPlaceholder' id='viz1770504480900' style='position: relative'>
+                    <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;JD&#47;JD2BCT4QF&#47;1_rss.png' style='border: none' /></a></noscript>
+                    <object class='tableauViz' style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;JD2BCT4QF' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;JD&#47;JD2BCT4QF&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='zh-CN' />
+                    </object>
+                </div>
+            </article>
 
-        <article class="data-card">
-            <div class="card-header">
-                <h3 class="card-title">Comprehensive Data Visualization</h3>
-            </div>
-            <div class='tableauPlaceholder' id='viz1770504457892' style='position: relative'>
-                <noscript>
-                    <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W7&#47;W77CGS4QW&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz' style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                    <param name='embed_code_version' value='3' /> 
-                    <param name='path' value='shared&#47;W77CGS4QW' /> 
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W7&#47;W77CGS4QW&#47;1.png' /> 
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='language' value='zh-CN' />
-                </object>
-            </div>
-        </article>
+            <article class="data-card" id="section-pollutant">
+                <div class="card-header">
+                    <h3 class="card-title">Pollutant Analysis & Risk Assessment</h3>
+                </div>
+                <div class='tableauPlaceholder' id='viz1770504438446' style='position: relative'>
+                    <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;5Z&#47;5ZBGB5Z3Y&#47;1_rss.png' style='border: none' /></a></noscript>
+                    <object class='tableauViz' style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;5ZBGB5Z3Y' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;5Z&#47;5ZBGB5Z3Y&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' />
+                    </object>
+                </div>
+            </article>
 
-        <article class="data-card">
-            <div class="card-header">
-                <h3 class="card-title">Advanced Trends & Insights</h3>
-            </div>
-            <div class='tableauPlaceholder' id='viz1770504480900' style='position: relative'>
-                <noscript>
-                    <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;JD&#47;JD2BCT4QF&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz' style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                    <param name='embed_code_version' value='3' /> 
-                    <param name='path' value='shared&#47;JD2BCT4QF' /> 
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;JD&#47;JD2BCT4QF&#47;1.png' /> 
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='language' value='zh-CN' />
-                </object>
-            </div>
-        </article>
+            <article class="data-card" id="section-comprehensive">
+                <div class="card-header">
+                    <h3 class="card-title">Comprehensive Data Visualization</h3>
+                </div>
+                <div class='tableauPlaceholder' id='viz1770504457892' style='position: relative'>
+                    <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W7&#47;W77CGS4QW&#47;1_rss.png' style='border: none' /></a></noscript>
+                    <object class='tableauViz' style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;W77CGS4QW' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W7&#47;W77CGS4QW&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='zh-CN' />
+                    </object>
+                </div>
+            </article>
 
-        <article class="data-card">
-            <div class="card-header">
-                <h3 class="card-title">Health Impacts: Asthma & Environmental Vulnerability</h3>
-            </div>
-            <div class='tableauPlaceholder' id='viz1770511153978' style='position: relative'>
-                <noscript>
-                    <a href='#'><img alt='Asthma Prevalence Increases with Environmental Justice Vulnerability, Especially Under High Pollution ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauTab_17705075189980&#47;AsthmaPrevalenceIncreaseswithEnvironmentalJusticeVulnerabilityEspeciallyUnderHighPollution&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz'  style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                    <param name='embed_code_version' value='3' /> 
-                    <param name='site_root' value='' />
-                    <param name='name' value='TableauTab_17705075189980&#47;AsthmaPrevalenceIncreaseswithEnvironmentalJusticeVulnerabilityEspeciallyUnderHighPollution' />
-                    <param name='tabs' value='no' />
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauTab_17705075189980&#47;AsthmaPrevalenceIncreaseswithEnvironmentalJusticeVulnerabilityEspeciallyUnderHighPollution&#47;1.png' /> 
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='language' value='zh-CN' />
-                </object>
-            </div>
-        </article>
+            <article class="data-card" id="section-asthma">
+                <div class="card-header">
+                    <h3 class="card-title">Health Impacts: Asthma & EJ</h3>
+                </div>
+                <div class='tableauPlaceholder' id='viz1770511153978' style='position: relative'>
+                    <noscript><a href='#'><img alt='Asthma Prevalence Increases with Environmental Justice Vulnerability, Especially Under High Pollution ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauTab_17705075189980&#47;AsthmaPrevalenceIncreaseswithEnvironmentalJusticeVulnerabilityEspeciallyUnderHighPollution&#47;1_rss.png' style='border: none' /></a></noscript>
+                    <object class='tableauViz'  style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='TableauTab_17705075189980&#47;AsthmaPrevalenceIncreaseswithEnvironmentalJusticeVulnerabilityEspeciallyUnderHighPollution' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauTab_17705075189980&#47;AsthmaPrevalenceIncreaseswithEnvironmentalJusticeVulnerabilityEspeciallyUnderHighPollution&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='zh-CN' />
+                    </object>
+                </div>
+            </article>
 
-        <article class="data-card">
-            <div class="card-header">
-                <h3 class="card-title">Environmental Justice Analysis: Pollution & County Composition</h3>
-            </div>
-            <div class='tableauPlaceholder' id='viz1770511203453' style='position: relative'>
-                <noscript>
-                    <a href='#'><img alt='Fig2_EJ_Composition_by_Pollution ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Hi&#47;HighEnvironmentalJusticeCountiesAreDisproportionatelyRepresentedAmongHigh-PollutionCounties&#47;Fig2_EJ_Composition_by_Pollution&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz'  style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                    <param name='embed_code_version' value='3' /> 
-                    <param name='site_root' value='' />
-                    <param name='name' value='HighEnvironmentalJusticeCountiesAreDisproportionatelyRepresentedAmongHigh-PollutionCounties&#47;Fig2_EJ_Composition_by_Pollution' />
-                    <param name='tabs' value='no' />
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Hi&#47;HighEnvironmentalJusticeCountiesAreDisproportionatelyRepresentedAmongHigh-PollutionCounties&#47;Fig2_EJ_Composition_by_Pollution&#47;1.png' /> 
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='language' value='zh-CN' />
-                </object>
-            </div>
-        </article>
+            <article class="data-card" id="section-ej-comp">
+                <div class="card-header">
+                    <h3 class="card-title">EJ Analysis: Pollution & Composition</h3>
+                </div>
+                <div class='tableauPlaceholder' id='viz1770511203453' style='position: relative'>
+                    <noscript><a href='#'><img alt='Fig2_EJ_Composition_by_Pollution ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Hi&#47;HighEnvironmentalJusticeCountiesAreDisproportionatelyRepresentedAmongHigh-PollutionCounties&#47;Fig2_EJ_Composition_by_Pollution&#47;1_rss.png' style='border: none' /></a></noscript>
+                    <object class='tableauViz'  style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='HighEnvironmentalJusticeCountiesAreDisproportionatelyRepresentedAmongHigh-PollutionCounties&#47;Fig2_EJ_Composition_by_Pollution' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Hi&#47;HighEnvironmentalJusticeCountiesAreDisproportionatelyRepresentedAmongHigh-PollutionCounties&#47;Fig2_EJ_Composition_by_Pollution&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='zh-CN' />
+                    </object>
+                </div>
+            </article>
 
-        <article class="data-card">
-            <div class="card-header">
-                <h3 class="card-title">Key Drivers of PM2.5 Pollution</h3>
-            </div>
-            <div class='tableauPlaceholder' id='viz1770511312112' style='position: relative'>
-                <noscript>
-                    <a href='#'><img alt='Fig3_Driver_PM25 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Fig3_Driver_PM25&#47;Fig3_Driver_PM25&#47;1_rss.png' style='border: none' /></a>
-                </noscript>
-                <object class='tableauViz'  style='display:none;'>
-                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                    <param name='embed_code_version' value='3' /> 
-                    <param name='site_root' value='' />
-                    <param name='name' value='Fig3_Driver_PM25&#47;Fig3_Driver_PM25' />
-                    <param name='tabs' value='no' />
-                    <param name='toolbar' value='yes' />
-                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Fig3_Driver_PM25&#47;Fig3_Driver_PM25&#47;1.png' /> 
-                    <param name='animate_transition' value='yes' />
-                    <param name='display_static_image' value='yes' />
-                    <param name='display_spinner' value='yes' />
-                    <param name='display_overlay' value='yes' />
-                    <param name='display_count' value='yes' />
-                    <param name='language' value='zh-CN' />
-                </object>
-            </div>
-        </article>
+            <article class="data-card" id="section-drivers">
+                <div class="card-header">
+                    <h3 class="card-title">Key Drivers of PM2.5 Pollution</h3>
+                </div>
+                <div class='tableauPlaceholder' id='viz1770511312112' style='position: relative'>
+                    <noscript><a href='#'><img alt='Fig3_Driver_PM25 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Fig3_Driver_PM25&#47;Fig3_Driver_PM25&#47;1_rss.png' style='border: none' /></a></noscript>
+                    <object class='tableauViz'  style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Fig3_Driver_PM25&#47;Fig3_Driver_PM25' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;Fig3_Driver_PM25&#47;Fig3_Driver_PM25&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='zh-CN' />
+                    </object>
+                </div>
+            </article>
 
-    </main>
+        </main>
+    </div>
 
     <script type='text/javascript'>
-        // 初始化图表 1
-        var divElement1 = document.getElementById('viz1770504390091');
-        var vizElement1 = divElement1.getElementsByTagName('object')[0];
-        vizElement1.style.width='100%';
-        vizElement1.style.height=(divElement1.offsetWidth*0.75)+'px';
-        vizElement1.style.minHeight='500px';
+        function initTableauViz(divId) {
+            var divElement = document.getElementById(divId);
+            if(divElement) {
+                var vizElement = divElement.getElementsByTagName('object')[0];
+                vizElement.style.width = '100%';
+                vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+                vizElement.style.minHeight = '500px'; 
+            }
+        }
 
-        // 初始化图表 2
-        var divElement2 = document.getElementById('viz1770504438446');
-        var vizElement2 = divElement2.getElementsByTagName('object')[0];
-        vizElement2.style.width='100%';
-        vizElement2.style.height=(divElement2.offsetWidth*0.75)+'px';
-        vizElement2.style.minHeight='500px';
-
-        // 初始化图表 3
-        var divElement3 = document.getElementById('viz1770504457892');
-        var vizElement3 = divElement3.getElementsByTagName('object')[0];
-        vizElement3.style.width='100%';
-        vizElement3.style.height=(divElement3.offsetWidth*0.75)+'px';
-        vizElement3.style.minHeight='500px';
-
-        // 初始化图表 4
-        var divElement4 = document.getElementById('viz1770504480900');
-        var vizElement4 = divElement4.getElementsByTagName('object')[0];
-        vizElement4.style.width='100%';
-        vizElement4.style.height=(divElement4.offsetWidth*0.75)+'px';
-        vizElement4.style.minHeight='500px';
-
-        // 初始化图表 5
-        var divElement5 = document.getElementById('viz1770511153978');
-        var vizElement5 = divElement5.getElementsByTagName('object')[0];
-        vizElement5.style.width='100%';
-        vizElement5.style.height=(divElement5.offsetWidth*0.75)+'px';
-        vizElement5.style.minHeight='500px';
-
-        // 初始化图表 6
-        var divElement6 = document.getElementById('viz1770511203453');
-        var vizElement6 = divElement6.getElementsByTagName('object')[0];
-        vizElement6.style.width='100%';
-        vizElement6.style.height=(divElement6.offsetWidth*0.75)+'px';
-        vizElement6.style.minHeight='500px';
-
-        // [新增] 初始化图表 7
-        var divElement7 = document.getElementById('viz1770511312112');
-        var vizElement7 = divElement7.getElementsByTagName('object')[0];
-        vizElement7.style.width='100%';
-        vizElement7.style.height=(divElement7.offsetWidth*0.75)+'px';
-        vizElement7.style.minHeight='500px';
+        // 顺序已更新
+        var vizIds = [
+            'viz1770512051199', // Map 
+            'viz1770504480900', // Advanced Trends (moved here)
+            'viz1770504438446', // Pollutant Analysis
+            'viz1770504457892', // Comprehensive
+            'viz1770511153978', // Asthma
+            'viz1770511203453', // EJ Comp
+            'viz1770511312112'  // Drivers
+        ];
         
-        // 加载 Tableau API
+        vizIds.forEach(initTableauViz);
+
         var scriptElement = document.createElement('script');
         scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-        // 将脚本插入到最后一个图表对象之前
-        vizElement7.parentNode.insertBefore(scriptElement, vizElement7);
+        document.body.appendChild(scriptElement);
+
+        // 滚动监听 (Scroll Spy)
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.data-card');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px', 
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        const id = entry.target.getAttribute('id');
+                        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
     </script>
 
     <footer>
