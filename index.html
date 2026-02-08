@@ -9,21 +9,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 0. 设计系统 (Design System) --- */
+        /* --- 0. 设计系统 (Design System) - Tableau 风格定制版 --- */
         :root {
-            --primary-color: #264D47;       
-            --primary-light: #3A726A;
-            --accent-color: #4DB6AC;        
-            --accent-soft: #E0F2F1;         
-            --bg-body: #F5F7F9;             
+            /* 核心：Tableau 标准绿 */
+            --tableau-green: #59A14F;       
+            
+            /* 衍生色系 */
+            --primary-color: #59A14F;       /* 主品牌色 */
+            --primary-hover: #46803D;       /* 悬停加深色 */
+            --accent-soft: #F2F8F2;         /* 极浅的绿色背景 (Tint) */
+            --highlight-bg: rgba(89, 161, 79, 0.1); /* 高亮背景 */
+            
+            /* 基础色系 */
+            --bg-body: #F9FBF9;             /* 略带暖意的灰白，更护眼 */
             --bg-card: #FFFFFF;
-            --text-main: #1A202C;
-            --text-secondary: #4A5568;
-            --text-light: #718096;
-            --border-radius: 16px;
-            --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-            --card-shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
-            --header-shadow: 0 1px 0 rgba(0,0,0,0.05);
+            --text-main: #2D3748;           /* 深炭灰，阅读体验优于纯黑 */
+            --text-secondary: #586675;      /* Slate Grey */
+            --text-light: #8CA0B3;
+            
+            /* 阴影与圆角 */
+            --border-radius: 12px;          /* Tableau 风格通常更方正一点，稍微减小圆角 */
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --card-shadow-hover: 0 12px 30px rgba(89, 161, 79, 0.15); /* 悬浮时带有绿色光晕 */
+            --header-shadow: 0 1px 0 rgba(0,0,0,0.08);
         }
 
         /* --- 1. 全局样式重置 --- */
@@ -37,23 +45,22 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            background-image: radial-gradient(#E2E8F0 1px, transparent 1px);
-            background-size: 24px 24px;
+            /* 移除之前的点状背景，改用更干净的纯色，符合数据大屏风格 */
         }
 
         /* --- 2. 顶部导航 --- */
         .site-header {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
+            border-bottom: 3px solid var(--tableau-green); /* 顶部增加一条绿色强调线 */
             box-shadow: var(--header-shadow);
         }
 
@@ -67,9 +74,9 @@
         }
 
         .site-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main); /* 标题改用深灰，更稳重 */
             margin: 0;
             display: flex;
             align-items: center;
@@ -77,66 +84,56 @@
             letter-spacing: -0.02em;
         }
         
+        .site-title span {
+            color: var(--tableau-green); /* 只让 "Air" 或部分文字变绿 */
+        }
+        
         .site-title::before {
             content: "";
             display: block;
-            width: 10px;
-            height: 10px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(77, 182, 172, 0.2);
+            width: 12px;
+            height: 12px;
+            background-color: var(--tableau-green);
+            border-radius: 2px; /* 方形圆角，类似图表图例 */
         }
 
         .header-logo-container img {
             height: 36px;
             width: auto;
             display: block;
-            opacity: 0.9;
+            opacity: 1;
         }
 
         /* --- 3. Hero 区域 --- */
         .hero-section {
             position: relative;
             max-width: 1000px;
-            margin: 60px auto 50px auto;
+            margin: 50px auto 50px auto;
             padding: 40px;
             text-align: center;
-            background: #fff;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(46, 92, 85, 0.08);
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(77,182,172,0.1) 0%, rgba(255,255,255,0) 70%);
-            z-index: 0;
-            pointer-events: none;
+            /* 移除复杂的卡片背景，使用更通透的设计 */
+            background: transparent; 
         }
 
         .hero-section h1 {
-            position: relative;
-            z-index: 1;
             font-size: 3rem;
             font-weight: 800;
-            color: var(--primary-color);
+            color: var(--text-main);
             margin-bottom: 20px;
             line-height: 1.1;
             letter-spacing: -0.03em;
         }
         
+        .hero-section h1 span {
+            color: var(--tableau-green);
+            background: linear-gradient(120deg, transparent 60%, var(--accent-soft) 60%); /* 绿色下划线高光 */
+        }
+        
         .hero-section p {
-            position: relative;
-            z-index: 1;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
             margin-bottom: 0;
-            max-width: 650px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             font-weight: 400;
@@ -152,7 +149,7 @@
             position: relative;
         }
 
-        /* --- [升级版] 左侧多级导航 --- */
+        /* --- 左侧多级导航 (Style Refined) --- */
         .sidebar-nav {
             width: 260px;
             flex-shrink: 0;
@@ -162,63 +159,67 @@
             max-height: calc(100vh - 120px);
             overflow-y: auto;
             padding: 10px 0;
+            border-right: 1px solid #eee; /* 分割线 */
+            padding-right: 20px;
         }
 
         .nav-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .nav-link {
             display: flex;
             align-items: center;
             text-decoration: none;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
             position: relative;
         }
 
         /* 主菜单样式 */
         .nav-link.main {
-            padding: 10px 12px;
+            padding: 8px 0;
             color: var(--text-main);
             font-size: 0.95rem;
             font-weight: 700;
-            border-radius: 8px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase; /* 大写，更像目录 */
         }
-
-        .nav-link.main:hover, .nav-link.main.active {
-            color: var(--primary-color);
-            background-color: rgba(77, 182, 172, 0.08);
+        
+        .nav-link.main.active {
+            color: var(--tableau-green);
         }
 
         /* 子菜单容器 */
         .nav-sub-container {
-            padding-left: 12px;
-            margin-top: 5px;
-            border-left: 1px solid #E2E8F0;
-            margin-left: 12px;
+            padding-left: 0;
+            margin-top: 4px;
+            border-left: 2px solid #E2E8F0; /* 灰色进度条 */
+            margin-left: 2px;
         }
 
         /* 子菜单样式 */
         .nav-link.sub {
-            padding: 8px 12px;
+            padding: 8px 16px;
             color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-weight: 500;
-            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            border-radius: 0 6px 6px 0;
             margin-bottom: 2px;
         }
 
         .nav-link.sub:hover {
-            color: var(--primary-color);
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            transform: translateX(3px);
+            color: var(--tableau-green);
+            background-color: var(--accent-soft);
         }
 
+        /* 子菜单激活态：左侧边框变绿 */
         .nav-link.sub.active {
-            color: var(--accent-color);
+            color: var(--tableau-green);
             font-weight: 600;
-            background-color: #fff;
+            background-color: var(--highlight-bg);
+            border-left: 3px solid var(--tableau-green); /* 关键：视觉连接 */
+            margin-left: -2px; /* 修正边框位置 */
+            padding-left: 13px; /* 视觉补偿 */
         }
 
         /* --- 右侧内容区域 --- */
@@ -236,52 +237,64 @@
             scroll-margin-top: 110px;
         }
 
-        /* --- 卡片通用样式 --- */
+        /* --- 卡片通用样式 (Clean Style) --- */
         .data-card {
             background: var(--bg-card);
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
-            padding: 32px;
+            padding: 36px;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 1px solid rgba(0,0,0,0.03); /* 极淡的边框 */
             position: relative;
-            scroll-margin-top: 120px; /* 锚点定位偏移 */
+            scroll-margin-top: 120px;
         }
 
         .data-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--card-shadow-hover);
+            border-color: rgba(89, 161, 79, 0.3); /* 悬浮时边框变绿 */
         }
 
         .card-header {
             margin-bottom: 24px;
             padding-bottom: 16px;
-            border-bottom: 1px solid #edf2f7;
+            border-bottom: 2px solid var(--accent-soft);
             display: flex;
             align-items: baseline;
             justify-content: space-between;
         }
 
         .card-title {
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--text-main); /* 标题用深色，不抢图表风头 */
             margin: 0;
-            letter-spacing: -0.02em;
+        }
+        
+        /* 标题前的绿色装饰块 */
+        .card-title::before {
+            content: ""; /* 不显示内容 */
+            display: inline-block;
+            width: 6px;
+            height: 20px;
+            background-color: var(--tableau-green);
+            margin-right: 12px;
+            vertical-align: middle;
+            border-radius: 2px;
         }
 
         .expert-badge {
             font-size: 0.75rem;
             text-transform: uppercase;
             font-weight: 700;
-            color: var(--accent-color);
-            background: var(--accent-soft);
-            padding: 4px 10px;
+            color: #fff;
+            background: var(--tableau-green); /* 实心绿底白字 */
+            padding: 4px 12px;
             border-radius: 20px;
             letter-spacing: 0.05em;
         }
 
-        /* --- 文本内容与洞察框 --- */
+        /* --- 文本与洞察 --- */
         .card-text-block {
             color: var(--text-secondary);
             font-size: 1rem;
@@ -291,9 +304,9 @@
         }
 
         .insight-box {
-            background: linear-gradient(to right, #F8FAFC, #FFFFFF);
-            border: 1px solid #E2E8F0;
-            border-left: 4px solid var(--accent-color);
+            background: var(--accent-soft); /* 浅绿背景 */
+            border: 1px solid rgba(89, 161, 79, 0.2);
+            /* border-left: 4px solid var(--tableau-green);  去掉左边框，改成整体微绿 */
             padding: 20px 24px;
             border-radius: 8px;
             margin-bottom: 24px;
@@ -301,7 +314,7 @@
 
         .insight-box h5 {
             margin: 0 0 8px 0;
-            color: var(--primary-color);
+            color: var(--primary-hover); /* 深绿色标题 */
             font-size: 0.95rem;
             font-weight: 700;
             display: flex;
@@ -309,11 +322,6 @@
             gap: 8px;
         }
         
-        .insight-box h5::before {
-            content: "💡";
-            font-size: 1rem;
-        }
-
         .insight-box p {
             margin: 0;
             font-size: 0.95rem;
@@ -321,15 +329,16 @@
         }
 
         .method-box {
-            background-color: var(--accent-soft);
+            background-color: #F8F9FA; /* 灰色背景区分方法论 */
             padding: 24px;
             border-radius: 12px;
             margin-top: 30px;
+            border: 1px dashed #D1D5DB;
         }
         
         .method-box h4 {
             margin-top: 0;
-            color: var(--primary-color);
+            color: var(--text-main);
             font-size: 1rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -340,16 +349,16 @@
         .method-box p {
             margin-bottom: 0;
             font-size: 0.9rem;
-            color: var(--primary-light);
-            font-weight: 500;
+            color: var(--text-secondary);
         }
 
-        /* --- 表格样式 --- */
+        /* --- 表格样式 (Green Theme) --- */
         .table-responsive {
             overflow-x: auto;
             margin: 24px 0;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            border: 1px solid #eee;
         }
 
         .ej-table {
@@ -360,16 +369,15 @@
         }
 
         .ej-table thead {
-            background-color: #F1F5F9;
+            background-color: var(--tableau-green); /* 绿色表头 */
         }
 
         .ej-table th {
             text-align: left;
             padding: 16px 20px;
-            color: var(--text-secondary);
+            color: #fff; /* 白字 */
             font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
+            font-size: 0.9rem;
             letter-spacing: 0.03em;
         }
 
@@ -380,36 +388,34 @@
         }
 
         .ej-table tbody tr:hover {
-            background-color: #F8FAFC;
+            background-color: var(--accent-soft); /* 悬浮浅绿 */
         }
 
+        /* --- 特殊强调 --- */
         .conclusion-block {
             margin-top: 40px;
             padding-top: 30px;
-            border-top: 2px dashed #E2E8F0;
+            border-top: 2px solid var(--tableau-green); /* 绿色结语线 */
         }
 
         .source-citation {
             margin-top: 24px;
             font-size: 0.75rem;
             color: var(--text-light);
-            background: #F8FAFC;
+            background: #fff;
             padding: 12px;
+            border: 1px solid #eee;
             border-radius: 6px;
-            border: 1px solid #EDF2F7;
         }
 
-        /* --- 数据集介绍专用 --- */
+        /* --- Dataset Grid --- */
         .card-body-split {
             display: flex;
             align-items: center;
             gap: 50px; 
         }
 
-        .split-text { 
-            flex: 1.2; 
-            min-width: 300px; 
-        }
+        .split-text { flex: 1.2; min-width: 300px; }
         
         .dataset-grid {
             display: grid;
@@ -418,7 +424,7 @@
         }
 
         .data-point {
-            background: #F8FAFC;
+            background: #fff;
             padding: 16px;
             border-radius: 12px;
             border: 1px solid #E2E8F0;
@@ -426,9 +432,9 @@
         }
 
         .data-point:hover {
-            border-color: var(--accent-color);
-            background: #fff;
-            box-shadow: 0 4px 10px rgba(77, 182, 172, 0.1);
+            border-color: var(--tableau-green);
+            background: var(--accent-soft);
+            box-shadow: 0 4px 10px rgba(89, 161, 79, 0.1);
         }
 
         .data-point .label {
@@ -442,7 +448,7 @@
 
         .data-point .value {
             font-size: 0.95rem;
-            color: var(--primary-color);
+            color: var(--text-main);
             font-weight: 600;
             line-height: 1.4;
         }
@@ -468,7 +474,7 @@
         
         .tableauPlaceholder { 
             width: 100%; 
-            border-radius: 12px; 
+            border-radius: 8px; 
             overflow: hidden; 
             background-color: #F8FAFC;
         }
@@ -497,7 +503,7 @@
 
     <header class="site-header">
         <div class="header-content">
-            <div class="site-title">Air for All Good</div>
+            <div class="site-title">Air <span>for All Good</span></div>
             <div class="header-logo-container">
                 <img src="Datathon.png" alt="Datathon Logos">
             </div>
@@ -505,7 +511,7 @@
     </header>
 
     <section class="hero-section">
-        <h1>Unveiling the Invisible: <br>US Air Quality 2025</h1>
+        <h1>Unveiling the Invisible: <br><span>US Air Quality 2025</span></h1>
         <p>
             Data-Driven Insights into Respiratory Health & Environmental Justice.
             <br>
@@ -694,7 +700,8 @@
                             <param name='embed_code_version' value='3' /> 
                             <param name='site_root' value='' />
                             <param name='name' value='airreport&#47;5' />
-                            <param name='tabs' value='yes' /> <param name='toolbar' value='yes' />
+                            <param name='tabs' value='yes' /> 
+                            <param name='toolbar' value='yes' />
                             <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;5&#47;1.png' /> 
                             <param name='animate_transition' value='yes' />
                             <param name='display_static_image' value='yes' />
@@ -788,7 +795,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td rowspan="3" style="font-weight: 600; color: var(--primary-color);">High Pollution (Top 20%)</td>
+                                    <td rowspan="3" style="font-weight: 600; color: var(--tableau-green);">High Pollution (Top 20%)</td>
                                     <td>Low EJ (Bottom 20%)</td>
                                     <td>10.24%</td>
                                 </tr>
@@ -802,7 +809,7 @@
                                 </tr>
                                 
                                 <tr>
-                                    <td rowspan="3" style="font-weight: 600; color: var(--primary-color);">Middle 60% Pollution</td>
+                                    <td rowspan="3" style="font-weight: 600; color: var(--tableau-green);">Middle 60% Pollution</td>
                                     <td>Low EJ (Bottom 20%)</td>
                                     <td>10.41%</td>
                                 </tr>
@@ -819,7 +826,7 @@
                     </div>
 
                     <div class="conclusion-block">
-                        <h4 style="color: var(--primary-color); display:flex; align-items:center; gap:10px;">
+                        <h4 style="color: var(--tableau-green); display:flex; align-items:center; gap:10px;">
                             <span>🏁</span> Final Conclusion
                         </h4>
                         <p class="card-text-block">
@@ -861,7 +868,7 @@
             'viz1770504480900', 
             'viz1770504438446', 
             'viz1770504457892', 
-            'viz1770512766991', // [New] Livability Index
+            'viz1770512766991', 
             'viz1770511153978', 
             'viz1770511203453', 
             'viz1770511312112'  
@@ -876,7 +883,9 @@
         // 导航联动脚本
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('.content-group');
-            const navLinks = document.querySelectorAll('.nav-link.main');
+            // 修改选择器：只高亮主菜单
+            const navLinks = document.querySelectorAll('.nav-link.main'); 
+            const subLinks = document.querySelectorAll('.nav-link.sub');
 
             const observerOptions = {
                 root: null,
@@ -887,11 +896,12 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // 1. 高亮主菜单 (Section Level)
+                        const sectionId = entry.target.getAttribute('id');
                         navLinks.forEach(link => link.classList.remove('active'));
-                        const id = entry.target.getAttribute('id');
-                        const activeLink = document.querySelector(`.nav-link.main[href="#${id}"]`);
-                        if (activeLink) {
-                            activeLink.classList.add('active');
+                        const activeMainLink = document.querySelector(`.nav-link.main[href="#${sectionId}"]`);
+                        if (activeMainLink) {
+                            activeMainLink.classList.add('active');
                         }
                     }
                 });
@@ -899,6 +909,14 @@
 
             sections.forEach(section => {
                 observer.observe(section);
+            });
+            
+            // 2. 增加子菜单点击高亮逻辑 (Click-based)
+            subLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    subLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
             });
         });
     </script>
