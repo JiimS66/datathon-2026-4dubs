@@ -66,6 +66,7 @@
         .header-content {
             max-width: 1400px; 
             margin: 0 auto;
+            /* 增加垂直内边距，适应大 Logo */
             padding: 20px 30px; 
             display: flex;
             justify-content: space-between;
@@ -73,6 +74,7 @@
         }
 
         .site-title {
+            /* 放大字号 */
             font-size: 1.8rem; 
             font-weight: 800;
             color: var(--text-main); 
@@ -97,6 +99,7 @@
         }
 
         .header-logo-container img {
+            /* Logo 尺寸放大 */
             height: 60px; 
             width: auto;
             display: block;
@@ -535,10 +538,10 @@
                 </div>
 
                 <div class="nav-group">
-                    <a href="#group-analysis" class="nav-link main">Pollutant Assessment</a>
+                    <a href="#group-analysis" class="nav-link main">Risk Assessment</a>
                     <div class="nav-sub-container">
-                        <a href="#card-pollutants" class="nav-link sub">Pollutant Composition</a>
-                        <a href="#card-comprehensive" class="nav-link sub">Pollutant by Area</a>
+                        <a href="#card-pollutants" class="nav-link sub">Pollutant Analysis</a>
+                        <a href="#card-comprehensive" class="nav-link sub">Dominant Pollutant Map</a>
                     </div>
                 </div>
 
@@ -546,6 +549,7 @@
                     <a href="#group-livability" class="nav-link main">Livability & Future</a>
                     <div class="nav-sub-container">
                         <a href="#card-livability" class="nav-link sub">Livability Index</a>
+                        <a href="#card-distribution" class="nav-link sub">AQI Distribution</a>
                     </div>
                 </div>
 
@@ -665,11 +669,11 @@
             <section id="group-analysis" class="content-group">
                 <article id="card-pollutants" class="data-card">
                     <div class="card-header">
-                        <h3 class="card-title">Pollutant Composition Assessment</h3>
+                        <h3 class="card-title">Pollutant Risk Assessment</h3>
                     </div>
                     <div class="insight-box">
                         <h5>Key Insight: Dominant Pollutants</h5>
-                        <p>Analysis of pollutant composition reveals that PM2.5 and Ozone remain the primary drivers of unhealthy AQI days. The chart below decomposes the risk factors.</p>
+                        <p>Analysis of pollutant composition reveals that PM2.5 and Ozone remain the primary drivers of 'Unhealthy' AQI days. The chart below decomposes the risk factors.</p>
                     </div>
                     <div class='tableauPlaceholder' id='viz1770515432060' style='position: relative'>
                         <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;2&#47;1_rss.png' style='border: none' /></a></noscript>
@@ -693,11 +697,7 @@
 
                 <article id="card-comprehensive" class="data-card">
                     <div class="card-header">
-                        <h3 class="card-title">Regional Pollutant Fingerprints</h3>
-                    </div>
-                    <div class="insight-box">
-                        <h5>Key Insight: TODO </h5>
-                        <p>The Western U.S. exhibits a stark pollutant divide: PM2.5 dominates the Northwest, Ozone and PM10 are the primary drivers in the Southwest (California). While the Central and Eastern U.S. remain relatively uniform, NO2 emerges as a rare primary pollutant, localized only in specific areas such as Carbon County, WY, and select counties in Texas.</p>
+                        <h3 class="card-title">Dominant Pollutant Map</h3>
                     </div>
                     <div class='tableauPlaceholder' id='viz1770512336534' style='position: relative'>
                         <noscript><a href='#'><img alt='The Dominant Pollutant Map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Th&#47;TheDominantPollutantMap&#47;TheDominantPollutantMap&#47;1_rss.png' style='border: none' /></a></noscript>
@@ -730,7 +730,7 @@
                         <h5>Key Insight: Quality of Life Index</h5>
                         <p>Synthesizing air quality data with environmental stability metrics provides a comprehensive "Livability Score". This visualization allows users to identify regions that offer the optimal balance between industrial activity and respiratory health safety.</p>
                     </div>
-                    <div class='tableauPlaceholder' id='viz1770512766991' style='position: relative'>
+                    <div class='tableauPlaceholder' id='viz1770515492394' style='position: relative'>
                         <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;5&#47;1_rss.png' style='border: none' /></a></noscript>
                         <object class='tableauViz' style='display:none;'>
                             <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
@@ -740,6 +740,34 @@
                             <param name='tabs' value='yes' /> 
                             <param name='toolbar' value='yes' />
                             <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;5&#47;1.png' /> 
+                            <param name='animate_transition' value='yes' />
+                            <param name='display_static_image' value='yes' />
+                            <param name='display_spinner' value='yes' />
+                            <param name='display_overlay' value='yes' />
+                            <param name='display_count' value='yes' />
+                            <param name='language' value='en-US' />
+                        </object>
+                    </div>
+                </article>
+
+                <article id="card-distribution" class="data-card">
+                    <div class="card-header">
+                        <h3 class="card-title">2025 AQI Distribution by State</h3>
+                    </div>
+                    <div class="insight-box">
+                        <h5>Key Insight: Long-tail Distribution</h5>
+                        <p>The boxplot highlights a significant 'long-tail distribution' in U.S. air quality: while most counties maintain a tight interquartile range within healthy levels, Western states exhibit extensive whiskers and numerous outliers. This visualizes the high environmental volatility in these regions, where localized extreme events cause frequent, severe departures from the median.</p>
+                    </div>
+                    <div class='tableauPlaceholder' id='viz1770515643423' style='position: relative'>
+                        <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;8&#47;1_rss.png' style='border: none' /></a></noscript>
+                        <object class='tableauViz' style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                            <param name='embed_code_version' value='3' /> 
+                            <param name='site_root' value='' />
+                            <param name='name' value='airreport&#47;8' />
+                            <param name='tabs' value='yes' /> 
+                            <param name='toolbar' value='yes' />
+                            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;8&#47;1.png' /> 
                             <param name='animate_transition' value='yes' />
                             <param name='display_static_image' value='yes' />
                             <param name='display_spinner' value='yes' />
@@ -904,8 +932,9 @@
             'viz1770512051199', 
             'viz1770516598444', 
             'viz1770515432060', 
-            'viz1770512336534', // [REPLACED] Updated Fourth Tableau
-            'viz1770512766991', 
+            'viz1770512336534', 
+            'viz1770515492394',
+            'viz1770515643423', // [NEW] Added for Distribution Chart
             'viz1770511153978', 
             'viz1770511203453', 
             'viz1770511312112'  
