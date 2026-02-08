@@ -52,7 +52,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- [关键修改] 2. 顶部导航 (Header Upgrade) --- */
+        /* --- 2. 顶部导航 (Header Upgrade) --- */
         .site-header {
             background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
@@ -66,7 +66,7 @@
         .header-content {
             max-width: 1400px; 
             margin: 0 auto;
-            /* [修改] 增加垂直内边距，适应大 Logo */
+            /* 增加垂直内边距，适应大 Logo */
             padding: 20px 30px; 
             display: flex;
             justify-content: space-between;
@@ -74,14 +74,14 @@
         }
 
         .site-title {
-            /* [修改] 放大字号，从 1.4rem -> 1.8rem */
+            /* 放大字号 */
             font-size: 1.8rem; 
             font-weight: 800;
             color: var(--text-main); 
             margin: 0;
             display: flex;
             align-items: center;
-            gap: 16px; /* [修改] 增加间距 */
+            gap: 16px; 
             letter-spacing: -0.03em;
         }
         
@@ -92,7 +92,6 @@
         .site-title::before {
             content: "";
             display: block;
-            /* [修改] 装饰块也同步放大 */
             width: 16px; 
             height: 16px;
             background-color: var(--tableau-green);
@@ -100,7 +99,7 @@
         }
 
         .header-logo-container img {
-            /* [修改] Logo 尺寸放大，从 36px -> 60px (约1.6倍) */
+            /* Logo 尺寸放大 */
             height: 60px; 
             width: auto;
             display: block;
@@ -621,7 +620,7 @@
                     </div>
                     <div class='tableauPlaceholder' id='viz1770512051199' style='position: relative'>
                         <noscript><a href='#'><img alt='US Air Quality Map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ma&#47;map1_17705120367170&#47;USAirQualityMap&#47;1_rss.png' style='border: none' /></a></noscript>
-                        <object class='tableauViz' style='display:none;'>
+                        <object class='tableauViz'  style='display:none;'>
                             <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
                             <param name='embed_code_version' value='3' /> 
                             <param name='site_root' value='' />
