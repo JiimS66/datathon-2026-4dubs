@@ -11,11 +11,11 @@
     <style>
         /* --- 0. 设计系统 (Design System) --- */
         :root {
-            --primary-color: #264D47;       /* 更深沉专业的墨绿色 */
+            --primary-color: #264D47;       
             --primary-light: #3A726A;
-            --accent-color: #4DB6AC;        /* 提亮色 */
-            --accent-soft: #E0F2F1;         /* 柔和背景色 */
-            --bg-body: #F5F7F9;             /* 冷灰调背景，更具科技感 */
+            --accent-color: #4DB6AC;        
+            --accent-soft: #E0F2F1;         
+            --bg-body: #F5F7F9;             
             --bg-card: #FFFFFF;
             --text-main: #1A202C;
             --text-secondary: #4A5568;
@@ -24,7 +24,6 @@
             --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
             --card-shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
             --header-shadow: 0 1px 0 rgba(0,0,0,0.05);
-            --gradient-hero: linear-gradient(135deg, #2E5C55 0%, #1A3C36 100%);
         }
 
         /* --- 1. 全局样式重置 --- */
@@ -38,13 +37,13 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; /* 使用 Inter 字体 */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             background-image: radial-gradient(#E2E8F0 1px, transparent 1px);
-            background-size: 24px 24px; /* 增加细微的网格纹理 */
+            background-size: 24px 24px;
         }
 
         /* --- 2. 顶部导航 --- */
@@ -95,7 +94,7 @@
             opacity: 0.9;
         }
 
-        /* --- 3. Hero 区域 (Visual Upgrade) --- */
+        /* --- 3. Hero 区域 --- */
         .hero-section {
             position: relative;
             max-width: 1000px;
@@ -108,7 +107,6 @@
             overflow: hidden;
         }
 
-        /* 装饰性背景元素 */
         .hero-section::before {
             content: '';
             position: absolute;
@@ -154,9 +152,9 @@
             position: relative;
         }
 
-        /* --- 左侧边栏 --- */
+        /* --- [升级版] 左侧多级导航 --- */
         .sidebar-nav {
-            width: 240px;
+            width: 260px;
             flex-shrink: 0;
             position: sticky;
             top: 100px;
@@ -166,32 +164,61 @@
             padding: 10px 0;
         }
 
+        .nav-group {
+            margin-bottom: 20px;
+        }
+
         .nav-link {
             display: flex;
             align-items: center;
-            padding: 12px 16px;
-            margin-bottom: 6px;
-            color: var(--text-secondary);
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            overflow: hidden;
         }
 
-        .nav-link:hover {
+        /* 主菜单样式 */
+        .nav-link.main {
+            padding: 10px 12px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 8px;
+        }
+
+        .nav-link.main:hover, .nav-link.main.active {
             color: var(--primary-color);
-            background-color: rgba(255,255,255,0.8);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            background-color: rgba(77, 182, 172, 0.08);
         }
 
-        .nav-link.active {
-            background-color: var(--primary-color);
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(46, 92, 85, 0.3);
+        /* 子菜单容器 */
+        .nav-sub-container {
+            padding-left: 12px;
+            margin-top: 5px;
+            border-left: 1px solid #E2E8F0;
+            margin-left: 12px;
+        }
+
+        /* 子菜单样式 */
+        .nav-link.sub {
+            padding: 8px 12px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 6px;
+            margin-bottom: 2px;
+        }
+
+        .nav-link.sub:hover {
+            color: var(--primary-color);
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transform: translateX(3px);
+        }
+
+        .nav-link.sub.active {
+            color: var(--accent-color);
             font-weight: 600;
+            background-color: #fff;
         }
 
         /* --- 右侧内容区域 --- */
@@ -199,7 +226,7 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 50px;
             min-width: 0; 
         }
 
@@ -218,6 +245,7 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.5);
             position: relative;
+            scroll-margin-top: 120px; /* 锚点定位偏移 */
         }
 
         .data-card:hover {
@@ -242,7 +270,6 @@
             letter-spacing: -0.02em;
         }
 
-        /* 新增：专家视角标签 */
         .expert-badge {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -254,7 +281,7 @@
             letter-spacing: 0.05em;
         }
 
-        /* --- 文本内容增强样式 --- */
+        /* --- 文本内容与洞察框 --- */
         .card-text-block {
             color: var(--text-secondary);
             font-size: 1rem;
@@ -263,7 +290,6 @@
             text-align: justify;
         }
 
-        /* 关键洞察模块 (Insight Box) */
         .insight-box {
             background: linear-gradient(to right, #F8FAFC, #FFFFFF);
             border: 1px solid #E2E8F0;
@@ -318,7 +344,7 @@
             font-weight: 500;
         }
 
-        /* --- 数据表格样式 (美化版) --- */
+        /* --- 表格样式 --- */
         .table-responsive {
             overflow-x: auto;
             margin: 24px 0;
@@ -353,10 +379,6 @@
             color: var(--text-main);
         }
 
-        .ej-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
         .ej-table tbody tr:hover {
             background-color: #F8FAFC;
         }
@@ -377,7 +399,7 @@
             border: 1px solid #EDF2F7;
         }
 
-        /* --- [重构] 数据集介绍卡片专用样式 --- */
+        /* --- 数据集介绍专用 --- */
         .card-body-split {
             display: flex;
             align-items: center;
@@ -389,7 +411,6 @@
             min-width: 300px; 
         }
         
-        /* 数据网格设计 - 替代原来的 ul li */
         .dataset-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -449,7 +470,7 @@
             width: 100%; 
             border-radius: 12px; 
             overflow: hidden; 
-            background-color: #F8FAFC; /* 加载占位色 */
+            background-color: #F8FAFC;
         }
 
         footer { 
@@ -464,7 +485,7 @@
 
         @media (max-width: 1024px) { 
             .layout-wrapper { flexDirection: column; padding: 0 20px; }
-            .sidebar-nav { display: none; } /* 移动端暂时隐藏侧边栏 */
+            .sidebar-nav { display: none; } 
             .header-content { padding: 15px 20px; }
             .hero-section h1 { font-size: 2rem; }
             .card-body-split { flexDirection: column-reverse; gap: 30px; }
@@ -496,17 +517,53 @@
         
         <aside class="sidebar-nav">
             <nav id="navbar">
-                <a href="#group-dataset" class="nav-link">Dataset Overview</a>
-                <a href="#group-overview" class="nav-link">Overview & Trends</a>
-                <a href="#group-analysis" class="nav-link">Risk Assessment</a>
-                <a href="#group-impact" class="nav-link">Health & Impacts</a>
+                <div class="nav-group">
+                    <a href="#group-dataset" class="nav-link main">Dataset Overview</a>
+                    <div class="nav-sub-container">
+                        <a href="#card-dataset" class="nav-link sub">Specs & Metrics</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <a href="#group-overview" class="nav-link main">Overview & Trends</a>
+                    <div class="nav-sub-container">
+                        <a href="#card-map" class="nav-link sub">Geographical Status</a>
+                        <a href="#card-trends" class="nav-link sub">Advanced Trends</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <a href="#group-analysis" class="nav-link main">Risk Assessment</a>
+                    <div class="nav-sub-container">
+                        <a href="#card-pollutants" class="nav-link sub">Pollutant Analysis</a>
+                        <a href="#card-comprehensive" class="nav-link sub">Comprehensive Viz</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <a href="#group-livability" class="nav-link main">Livability & Future</a>
+                    <div class="nav-sub-container">
+                        <a href="#card-livability" class="nav-link sub">Livability Index</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <a href="#group-impact" class="nav-link main">Health & Impacts</a>
+                    <div class="nav-sub-container">
+                        <a href="#card-ej-intro" class="nav-link sub">EJ Analysis Intro</a>
+                        <a href="#card-asthma" class="nav-link sub">Asthma & Vulnerability</a>
+                        <a href="#card-ej-comp" class="nav-link sub">EJ Composition</a>
+                        <a href="#card-geo-inequity" class="nav-link sub">Geographic Inequity</a>
+                        <a href="#card-conclusion" class="nav-link sub">Conclusion</a>
+                    </div>
+                </div>
             </nav>
         </aside>
 
         <main class="dashboard-content">
             
             <section id="group-dataset" class="content-group">
-                <article class="data-card">
+                <article id="card-dataset" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">Dataset Specification</h3>
                         <span class="expert-badge">Technical Scope</span>
@@ -548,13 +605,13 @@
             </section>
 
             <section id="group-overview" class="content-group">
-                <article class="data-card">
+                <article id="card-map" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">Geographical Overview & Status</h3>
                     </div>
                     <div class="insight-box">
                         <h5>Key Insight: Regional Disparities</h5>
-                        <p>The map highlights a heterogeneous distribution of AQI levels across the United States. While the majority of counties maintain 'Good' to 'Moderate' levels, distinct clusters of elevated AQI are observable in the Western regions, potentially correlated with geological features and population density centers.</p>
+                        <p>The map highlights a heterogeneous distribution of AQI levels across the United States. Distinct clusters of elevated AQI are observable in the Western regions, correlated with geological features.</p>
                     </div>
                     <div class='tableauPlaceholder' id='viz1770512051199' style='position: relative'>
                         <noscript><a href='#'><img alt='US Air Quality Map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ma&#47;map1_17705120367170&#47;USAirQualityMap&#47;1_rss.png' style='border: none' /></a></noscript>
@@ -576,7 +633,7 @@
                     </div>
                 </article>
                 
-                <article class="data-card">
+                <article id="card-trends" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">Advanced Trends & Insights</h3>
                     </div>
@@ -590,14 +647,14 @@
             </section>
 
             <section id="group-analysis" class="content-group">
-                <article class="data-card">
+                <article id="card-pollutants" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">Pollutant Risk Assessment</h3>
                         <span class="expert-badge">Correlation Analysis</span>
                     </div>
                     <div class="insight-box">
                         <h5>Key Insight: Dominant Pollutants</h5>
-                        <p>Analysis of pollutant composition reveals that PM2.5 and Ozone remain the primary drivers of 'Unhealthy' AQI days. The chart below decomposes the risk factors, allowing us to identify which counties are specifically vulnerable to particulate matter versus ozone-related respiratory risks.</p>
+                        <p>Analysis of pollutant composition reveals that PM2.5 and Ozone remain the primary drivers of 'Unhealthy' AQI days. The chart below decomposes the risk factors.</p>
                     </div>
                     <div class='tableauPlaceholder' id='viz1770504438446' style='position: relative'>
                         <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;5Z&#47;5ZBGB5Z3Y&#47;1_rss.png' style='border: none' /></a></noscript>
@@ -607,7 +664,7 @@
                     </div>
                 </article>
 
-                <article class="data-card">
+                <article id="card-comprehensive" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">Comprehensive Data Visualization</h3>
                     </div>
@@ -620,9 +677,39 @@
                 </article>
             </section>
 
+            <section id="group-livability" class="content-group">
+                <article id="card-livability" class="data-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Livability & Future Outlook</h3>
+                        <span class="expert-badge">New Indicator</span>
+                    </div>
+                    <div class="insight-box">
+                        <h5>Key Insight: Quality of Life Index</h5>
+                        <p>Synthesizing air quality data with environmental stability metrics provides a comprehensive "Livability Score". This visualization allows users to identify regions that offer the optimal balance between industrial activity and respiratory health safety.</p>
+                    </div>
+                    <div class='tableauPlaceholder' id='viz1770512766991' style='position: relative'>
+                        <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;5&#47;1_rss.png' style='border: none' /></a></noscript>
+                        <object class='tableauViz' style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                            <param name='embed_code_version' value='3' /> 
+                            <param name='site_root' value='' />
+                            <param name='name' value='airreport&#47;5' />
+                            <param name='tabs' value='yes' /> <param name='toolbar' value='yes' />
+                            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;5&#47;1.png' /> 
+                            <param name='animate_transition' value='yes' />
+                            <param name='display_static_image' value='yes' />
+                            <param name='display_spinner' value='yes' />
+                            <param name='display_overlay' value='yes' />
+                            <param name='display_count' value='yes' />
+                            <param name='language' value='en-US' />
+                        </object>
+                    </div>
+                </article>
+            </section>
+
             <section id="group-impact" class="content-group">
                 
-                <article class="data-card">
+                <article id="card-ej-intro" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">Environmental Justice & Health Disparities</h3>
                         <span class="expert-badge">Crucial Finding</span>
@@ -632,22 +719,19 @@
                             This section investigates <strong>Environmental Justice (EJ)</strong> in U.S. air quality. We construct an Unhealthy Risk Index using pollutant-specific data and quantify community vulnerability using EJ percentiles.
                         </p>
                         <p>
-                            <strong>The Core Finding:</strong> High-pollution counties are disproportionately concentrated in high EJ vulnerability groups. Furthermore, counties facing both high pollution and high EJ risk exhibit significantly elevated <strong>asthma prevalence</strong>, suggesting compounding health impacts.
-                        </p>
-                        <p>
-                            Pollutant decomposition shows that PM2.5 and Ozone days are the dominant contributors to pollution burden in these high-risk communities.
+                            <strong>The Core Finding:</strong> High-pollution counties are disproportionately concentrated in high EJ vulnerability groups.
                         </p>
                     </div>
                     
                     <div class="method-box">
                         <h4>Methodology Note</h4>
                         <p>
-                            We applied feature aggregation and percentile-based stratification (Top/Bottom 20%) to isolate structural disparities. The focus is on interpretable risk segmentation rather than black-box prediction.
+                            We applied feature aggregation and percentile-based stratification (Top/Bottom 20%) to isolate structural disparities.
                         </p>
                     </div>
                 </article>
 
-                <article class="data-card">
+                <article id="card-asthma" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">Asthma Prevalence & Vulnerability</h3>
                     </div>
@@ -663,7 +747,7 @@
                     </div>
                 </article>
 
-                <article class="data-card">
+                <article id="card-ej-comp" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">EJ Composition in High Pollution Areas</h3>
                     </div>
@@ -675,7 +759,7 @@
                     </div>
                 </article>
 
-                <article class="data-card">
+                <article id="card-geo-inequity" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">Geographic Distribution of Inequities</h3>
                     </div>
@@ -687,7 +771,7 @@
                     </div>
                 </article>
 
-                <article class="data-card">
+                <article id="card-conclusion" class="data-card">
                     <div class="card-header">
                         <h3 class="card-title">Data Evidence & Final Conclusion</h3>
                     </div>
@@ -759,12 +843,15 @@
             if(divElement) {
                 var vizElement = divElement.getElementsByTagName('object')[0];
                 vizElement.style.width = '100%';
-                // 动态调整高度，保证视觉比例
+                
+                // 智能高度调整
                 if (divElement.offsetWidth > 800) {
                     vizElement.style.height = (divElement.offsetWidth * 0.65) + 'px';
                 } else {
                     vizElement.style.height = (divElement.offsetWidth * 0.85) + 'px';
                 }
+                
+                // 确保有最小高度
                 vizElement.style.minHeight = '500px'; 
             }
         }
@@ -774,6 +861,7 @@
             'viz1770504480900', 
             'viz1770504438446', 
             'viz1770504457892', 
+            'viz1770512766991', // [New] Livability Index
             'viz1770511153978', 
             'viz1770511203453', 
             'viz1770511312112'  
@@ -785,9 +873,10 @@
         scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
         document.body.appendChild(scriptElement);
 
+        // 导航联动脚本
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('.content-group');
-            const navLinks = document.querySelectorAll('.nav-link');
+            const navLinks = document.querySelectorAll('.nav-link.main');
 
             const observerOptions = {
                 root: null,
@@ -800,7 +889,7 @@
                     if (entry.isIntersecting) {
                         navLinks.forEach(link => link.classList.remove('active'));
                         const id = entry.target.getAttribute('id');
-                        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                        const activeLink = document.querySelector(`.nav-link.main[href="#${id}"]`);
                         if (activeLink) {
                             activeLink.classList.add('active');
                         }
