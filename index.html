@@ -3,143 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air for All Good - Data Dashboard</title>
+    <title>Air for All Good - 2025 US Air Quality Dashboard</title>
     <style>
-        /* --- 全局重置与基础样式 --- */
+        /* --- 0. 设计系统 (Design System) --- */
+        :root {
+            /* 核心色盘：清新、健康、科技 */
+            --primary-color: #2E5C55;      /* 深青色：用于标题，稳重 */
+            --accent-color: #4DB6AC;       /* 浅青色：用于强调 */
+            --bg-body: #F4F7F6;            /* 极淡灰绿背景：护眼 */
+            --bg-card: #FFFFFF;            /* 纯白卡片背景 */
+            --text-main: #2C3E50;          /* 主文字色 */
+            --text-secondary: #607D8B;     /* 次要文字色 */
+            
+            /* 间距与圆角 */
+            --spacing-unit: 20px;
+            --border-radius: 16px;
+            
+            /* 阴影：轻盈的悬浮感 */
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        /* --- 1. 全局样式重置 --- */
+        * { box-sizing: border-box; }
+        
         body {
             margin: 0;
             padding: 0;
-            /* 字体改为更现代无衬线字体 */
-            font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-            /* 背景色：极淡的米白，比纯白更护眼 */
-            background-color: #FAFAFA;
-            /* 文字颜色：深灰，比纯黑更柔和 */
-            color: #37474F;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased; /* 字体抗锯齿，更清晰 */
         }
 
-        /* --- 1. 顶部导航栏：清新森林绿渐变 --- */
+        /* --- 2. 顶部导航：极简玻璃态 --- */
         .site-header {
-            /* 核心修改：从黑色改为绿色渐变 */
-            background: linear-gradient(135deg, #2E7D32 0%, #66BB6A 100%);
-            color: #ffffff;
-            padding: 20px 0;
-            width: 100%;
-            /* 添加一点绿色阴影 */
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); /* 毛玻璃效果 */
+            position: sticky; /* 吸顶效果 */
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: var(--header-shadow);
         }
 
         .header-content {
-            /* 保持对齐宽度 1100px */
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .site-title {
-            margin: 0;
-            font-size: 3.5em;
+            font-size: 1.5rem;
             font-weight: 700;
-            white-space: nowrap;
-            /* 文字加一点阴影，增加立体感 */
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-        }
-
-        /* Logo 容器 */
-        .header-logo-container {
+            color: var(--primary-color);
+            margin: 0;
             display: flex;
             align-items: center;
+            gap: 10px;
+        }
+        
+        /* 这里的伪元素可以放一个小图标，增强品牌感 */
+        .site-title::before {
+            content: "";
+            display: block;
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
         }
 
         .header-logo-container img {
-            height: 70px;
+            height: 40px; /* Logo 稍微缩小，显得更精致 */
             width: auto;
-            /* Logo 背景：半透明白色，圆角，让它在绿底上既清晰又不突兀 */
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 8px 15px;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            display: block;
         }
 
-        /* --- 2. 描述 Banner：极淡薄荷绿 --- */
-        .description-banner {
-            /* 核心修改：从灰色改为极淡的薄荷绿 */
-            background-color: #F1F8E9;
-            padding: 50px 0;
-            width: 100%;
-            /* 底部边框改为浅绿色 */
-            border-bottom: 1px solid #C8E6C9;
-            margin-bottom: 40px;
-        }
-
-        .banner-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 30px;
+        /* --- 3. Hero 区域：文字排版 --- */
+        .hero-section {
+            max-width: 800px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
             text-align: center;
         }
 
-        .banner-inner h2 {
-            margin: 0 0 25px 0;
-            /* 标题颜色：深森林绿 */
-            color: #1B5E20;
-            font-weight: 500;
-            font-size: 1.8em;
-            line-height: 1.4;
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+        
+        .hero-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            text-align: center; /* 居中对齐比两端对齐更适合现代网页 */
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* 分割线：改为鲜亮的草绿色 */
-        .banner-divider {
-            width: 80px;
-            border: none;
-            border-top: 3px solid #66BB6A;
-            margin: 0 auto 25px auto;
-            border-radius: 2px;
+        /* --- 4. 仪表盘主体：卡片式布局 --- */
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+            display: grid;
+            gap: 40px; /* 卡片之间的间距 */
         }
 
-        .banner-inner p {
-            /* 描述文字颜色：灰绿色调 */
-            color: #455A64;
-            line-height: 1.8;
-            font-size: 1.1em;
-            text-align: justify;
+        /* 卡片通用样式：为了后续加新元素，把每个模块做成卡片 */
+        .data-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+            transition: transform 0.2s ease;
+            border: 1px solid rgba(0,0,0,0.02);
         }
 
-        /* --- 3. 主体内容区域 --- */
-        .main-container {
-            max-width: 1100px;
-            margin: 0 auto 60px auto;
-            padding: 40px 30px;
-            background-color: #ffffff;
-            /* 阴影更柔和 */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border-radius: 16px; /* 圆角更大 */
-            border: 1px solid #E8F5E9; /* 极细的微绿边框 */
+        .data-card:hover {
+            transform: translateY(-2px); /* 鼠标悬停微动，增加交互感 */
         }
 
-        /* 图表之间的分割线 */
-        .chart-separator {
-            border: 0;
-            height: 1px;
-            /* 渐变分割线：透明 -> 绿 -> 透明 */
-            background-image: linear-gradient(to right, rgba(255,255,255,0), #81C784, rgba(255,255,255,0));
-            margin: 60px 0;
+        .card-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
         }
 
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        /* Tableau 容器修正 */
+        .tableauPlaceholder {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden; /* 防止圆角溢出 */
+        }
+
+        /* --- 5. 页脚 --- */
         footer {
             text-align: center;
-            padding: 30px;
-            color: #90A4AE;
-            font-size: 0.9em;
+            padding: 40px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: #fff;
         }
 
-        /* 移动端适配 */
+        /* --- 响应式适配 --- */
         @media (max-width: 768px) {
-            .header-content { flex-direction: column; gap: 15px; }
-            .header-logo-container img { height: 60px; }
-            .site-title { font-size: 2.5em; }
+            .header-content {
+                padding: 15px 20px;
+            }
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+            .data-card {
+                padding: 15px; /* 移动端减小内边距 */
+            }
         }
     </style>
 </head>
@@ -147,94 +180,101 @@
 
     <header class="site-header">
         <div class="header-content">
-            <h1 class="site-title">Air for All Good</h1>
+            <div class="site-title">Air for All Good</div>
             <div class="header-logo-container">
                 <img src="Datathon.png" alt="Datathon Logos">
             </div>
         </div>
     </header>
 
-    <section class="description-banner">
-        <div class="banner-inner">
-            <h2>2025 In-Depth Insights into Air Quality and Livability Across the United States</h2>
-            <hr class="banner-divider">
-            <p>
-                This project aims to reveal the true picture of air quality across the United States through data visualization and analysis. 
-                We begin with a <strong>geographical overview</strong> of the entire country, capturing the current air quality status of each state and county. 
-                We then delve deeper, analyzing regional differences and the causes of <strong>core pollutants</strong> such as PM2.5 and ozone. 
-                Finally, we construct a <strong>livability risk assessment model</strong> to intuitively identify high-risk areas and areas with a high quality of life. 
-                <br><br>
-                Let's use data to collectively focus on respiratory health and the future of our environment.
-            </p>
-        </div>
+    <section class="hero-section">
+        <h1>Unveiling the Invisible: <br>US Air Quality 2025</h1>
+        <p>
+            An in-depth analysis of respiratory health and environmental future. 
+            From geographical overviews to livability risk assessments, we use data to reveal 
+            the true picture of PM2.5 and Ozone levels across the nation.
+        </p>
     </section>
 
-    <main class="main-container">
+    <main class="dashboard-container">
         
-        <div class='tableauPlaceholder' id='viz1770504390091' style='position: relative'>
-            <noscript>
-                <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;1&#47;1_rss.png' style='border: none' /></a>
-            </noscript>
-            <object class='tableauViz' style='display:none;'>
-                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                <param name='embed_code_version' value='3' /> 
-                <param name='site_root' value='' />
-                <param name='name' value='airreport&#47;1' />
-                <param name='tabs' value='yes' />
-                <param name='toolbar' value='yes' />
-                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;1&#47;1.png' /> 
-                <param name='animate_transition' value='yes' />
-                <param name='display_static_image' value='yes' />
-                <param name='display_spinner' value='yes' />
-                <param name='display_overlay' value='yes' />
-                <param name='display_count' value='yes' />
-                <param name='language' value='en-US' />
-            </object>
-        </div>
-        <script type='text/javascript'>
-            var divElement = document.getElementById('viz1770504390091');
-            var vizElement = divElement.getElementsByTagName('object')[0];
-            vizElement.style.width='100%';
-            vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
-            var scriptElement = document.createElement('script');
-            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-            vizElement.parentNode.insertBefore(scriptElement, vizElement);
-        </script>
+        <article class="data-card">
+            <div class="card-header">
+                <h3 class="card-title">Geographical Overview & Status</h3>
+            </div>
+            <div class='tableauPlaceholder' id='viz1770504390091' style='position: relative'>
+                <noscript>
+                    <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;1&#47;1_rss.png' style='border: none' /></a>
+                </noscript>
+                <object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                    <param name='embed_code_version' value='3' /> 
+                    <param name='site_root' value='' />
+                    <param name='name' value='airreport&#47;1' />
+                    <param name='tabs' value='yes' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ai&#47;airreport&#47;1&#47;1.png' /> 
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='en-US' />
+                </object>
+            </div>
+        </article>
 
-        <hr class="chart-separator">
-
-        <div class='tableauPlaceholder' id='viz1770504438446' style='position: relative'>
-            <noscript>
-                <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;5Z&#47;5ZBGB5Z3Y&#47;1_rss.png' style='border: none' /></a>
-            </noscript>
-            <object class='tableauViz' style='display:none;'>
-                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-                <param name='embed_code_version' value='3' /> 
-                <param name='path' value='shared&#47;5ZBGB5Z3Y' /> 
-                <param name='toolbar' value='yes' />
-                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;5Z&#47;5ZBGB5Z3Y&#47;1.png' /> 
-                <param name='animate_transition' value='yes' />
-                <param name='display_static_image' value='yes' />
-                <param name='display_spinner' value='yes' />
-                <param name='display_overlay' value='yes' />
-                <param name='display_count' value='yes' />
-                <param name='language' value='en-US' />
-            </object>
-        </div>
-        <script type='text/javascript'>
-            var divElement = document.getElementById('viz1770504438446');
-            var vizElement = divElement.getElementsByTagName('object')[0];
-            vizElement.style.width='100%';
-            vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
-            var scriptElement = document.createElement('script');
-            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-            vizElement.parentNode.insertBefore(scriptElement, vizElement);
-        </script>
+        <article class="data-card">
+            <div class="card-header">
+                <h3 class="card-title">Pollutant Analysis & Risk Assessment</h3>
+            </div>
+            <div class='tableauPlaceholder' id='viz1770504438446' style='position: relative'>
+                <noscript>
+                    <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;5Z&#47;5ZBGB5Z3Y&#47;1_rss.png' style='border: none' /></a>
+                </noscript>
+                <object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                    <param name='embed_code_version' value='3' /> 
+                    <param name='path' value='shared&#47;5ZBGB5Z3Y' /> 
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;5Z&#47;5ZBGB5Z3Y&#47;1.png' /> 
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='en-US' />
+                </object>
+            </div>
+        </article>
 
     </main>
 
+    <script type='text/javascript'>
+        // 初始化第一个图表
+        var divElement1 = document.getElementById('viz1770504390091');
+        var vizElement1 = divElement1.getElementsByTagName('object')[0];
+        vizElement1.style.width='100%';
+        // 自动计算高度，但设置最小高度防止塌陷
+        vizElement1.style.height=(divElement1.offsetWidth*0.75)+'px';
+        vizElement1.style.minHeight='500px';
+
+        // 初始化第二个图表
+        var divElement2 = document.getElementById('viz1770504438446');
+        var vizElement2 = divElement2.getElementsByTagName('object')[0];
+        vizElement2.style.width='100%';
+        vizElement2.style.height=(divElement2.offsetWidth*0.75)+'px';
+        vizElement2.style.minHeight='500px';
+        
+        // 加载 Tableau API
+        var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement2.parentNode.insertBefore(scriptElement, vizElement2);
+    </script>
+
     <footer>
-        &copy; 2026 Air for All Good Project. Powered by Tableau.
+        &copy; 2026 Air for All Good Project. <br>
+        <span style="opacity: 0.6; font-size: 0.8em;">Data visualization powered by Tableau & Public Data Sources.</span>
     </footer>
 
 </body>
